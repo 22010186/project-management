@@ -2,8 +2,16 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/header/theme-provider";
-import { NavBar } from "@/components/header/nav";
 import DashBoardWrapper from "./dashboard-wrapper";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { TanstackProvider } from "@/components/tanstack";
+import { Toaster } from "@/components/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,14 +38,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <DashBoardWrapper>{children}</DashBoardWrapper>
-        </ThemeProvider>
+        <TanstackProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <DashBoardWrapper>{children}</DashBoardWrapper>
+          </ThemeProvider>
+        </TanstackProvider>
+        <Toaster />
       </body>
     </html>
   );

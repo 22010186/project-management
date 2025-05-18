@@ -10,7 +10,10 @@ import { User } from "lucide-react";
 import { Input } from "../ui/input";
 import { Search, AlignJustify } from "lucide-react";
 import { BrandLogo } from "../logo";
-import { useSidebar } from "@/store/state";
+import { useIsLogin, useSidebar, useStateUser } from "@/store/state";
+import { createClient } from "@/lib/supabase/client";
+import { UserDropdown } from "./user-dropdown";
+import { toast } from "sonner";
 
 interface HeaderProps {
   className?: string;
@@ -21,8 +24,25 @@ export const NavBar = ({ className }: HeaderProps) => {
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
   const { open } = useSidebar();
+  const supabase = createClient();
+  const { dataUser: user, setDataUser } = useStateUser();
+  const { changeAction } = useIsLogin();
 
-  const user = false;
+  async function fetchUser() {
+    const currentUser = await supabase.auth.getUser();
+
+    if (currentUser.error?.name) {
+      toast(currentUser.error.name, {
+        description: currentUser.error.message,
+      });
+    }
+
+    setDataUser(currentUser.data.user);
+  }
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <header
@@ -57,16 +77,16 @@ export const NavBar = ({ className }: HeaderProps) => {
 
         <div className="flex items-center gap-4">
           {user ? (
-            <User size={24} />
+            <UserDropdown />
           ) : (
             <div className="flex items-center gap-3">
               {isLandingPage && (
                 <>
                   <Button variant="ghost" asChild>
-                    <Link href="/login">Sign in</Link>
+                    <Link href="/auth">Sign in</Link>
                   </Button>
-                  <Button asChild>
-                    <Link href="/create-account">Get Started</Link>
+                  <Button asChild onClick={changeAction}>
+                    <Link href="/auth">Get Started</Link>
                   </Button>
                 </>
               )}

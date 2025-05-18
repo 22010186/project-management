@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AlertCircle,
   AlertOctagon,
@@ -28,11 +28,21 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
+import { useWindowWidth } from "@/lib/utils";
 
 export function Sidebar() {
   const [showProjects, setShowProjects] = useState(false);
   const [showPriority, setShowPriority] = useState(true);
-  const { openSidebar, close } = useSidebar();
+  const { openSidebar, close, open } = useSidebar();
+  const windowWidth = useWindowWidth();
+
+  useEffect(() => {
+    if (windowWidth > 756 && !openSidebar) {
+      open();
+    } else if (windowWidth <= 756 && openSidebar) {
+      close();
+    }
+  }, [windowWidth]);
 
   return (
     <div
@@ -46,7 +56,7 @@ export function Sidebar() {
         {/* Top Logo */}
         <div className="z-70 flex min-h-14 w-full items-center justify-between px-6">
           <span className="font-extrabold font-mono text-lg">ProjectM</span>
-          <X onClick={() => close()} />
+          <X onClick={() => close()} className="md:hidden" />
         </div>
 
         {/* Team */}
