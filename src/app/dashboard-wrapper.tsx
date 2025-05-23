@@ -1,5 +1,6 @@
+import { AppSidebar } from "@/components/app-sidebar";
 import { NavBar } from "@/components/header/nav";
-import { Sidebar } from "@/components/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function DashBoardWrapper({
   children,
@@ -7,14 +8,16 @@ export default function DashBoardWrapper({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
+    <SidebarProvider>
+      <div className="flex w-full min-h-screen">
+        <AppSidebar />
 
-      <main className="flex w-full flex-col md:pl-64">
-        <NavBar />
+        <main className="flex w-full flex-col min-w-lg">
+          <NavBar />
 
-        {children}
-      </main>
-    </div>
+          <div className="p-4 xl:p-6 w-full">{children}</div>
+        </main>
+      </div>
+    </SidebarProvider>
   );
 }

@@ -14,13 +14,13 @@ import { useIsLogin, useSidebar, useStateUser } from "@/store/state";
 import { createClient } from "@/lib/supabase/client";
 import { UserDropdown } from "./user-dropdown";
 import { toast } from "sonner";
+import { SidebarTrigger } from "../ui/sidebar";
 
 interface HeaderProps {
   className?: string;
 }
 
 export const NavBar = ({ className }: HeaderProps) => {
-  const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
   const { open } = useSidebar();
@@ -47,11 +47,11 @@ export const NavBar = ({ className }: HeaderProps) => {
   return (
     <header
       className={cn(
-        "w-full z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-md dark:shadow-gray-800",
+        "w-full px-4 xl:px-6 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-md dark:shadow-gray-800",
         className
       )}
     >
-      <div className="container max-w-[1200px] flex h-16 items-center justify-between mx-auto">
+      <div className="container flex h-16 items-center justify-between mx-auto">
         <Link
           href={user ? "/projects" : "/"}
           className="hidden md:flex items-center space-x-2 font-bold text-xl hover:text-primary transition-colors text-blue-400 font-mono"
@@ -60,7 +60,8 @@ export const NavBar = ({ className }: HeaderProps) => {
         </Link>
 
         <div className="md:hidden cursor-pointer">
-          <AlignJustify size={24} onClick={() => open()} />
+          <SidebarTrigger />
+          {/* <AlignJustify size={24} onClick={() => open()} /> */}
         </div>
 
         <div className="relative h-fit w-full px-4 lg:px-10">

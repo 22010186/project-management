@@ -3,13 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/header/theme-provider";
 import DashBoardWrapper from "./dashboard-wrapper";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
 import { TanstackProvider } from "@/components/tanstack";
 import { Toaster } from "@/components/toaster";
 
