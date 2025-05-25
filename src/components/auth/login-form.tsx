@@ -10,6 +10,7 @@ import { useIsLogin, useStateUser } from "@/store/state";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { login } from "@/lib/supabase/api/actions";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Inputs {
   email: string;
@@ -23,8 +24,8 @@ export function LoginForm({
   const { setDataUser } = useStateUser();
   const { changeAction } = useIsLogin();
   const router = useRouter();
-
   const { register, handleSubmit } = useForm<Inputs>();
+  const queryClient = useQueryClient();
 
   const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
     const { user } = await login(data);
@@ -35,6 +36,8 @@ export function LoginForm({
     });
 
     router.push("/");
+
+    queryClient.invalidateQueries({ queryKey: ["allProjects"] });
   };
 
   return (

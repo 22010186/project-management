@@ -2,8 +2,8 @@ export interface Project {
   id: number;
   name: string;
   description?: string;
-  startDate?: string;
-  endDate?: string;
+  startdate?: string;
+  enddate?: string;
 }
 
 export enum Priority {
@@ -22,20 +22,20 @@ export enum Status {
 }
 
 export interface User {
-  userId?: number;
+  userid?: number;
   username: string;
   email: string;
-  profilePictureUrl?: string;
-  cognitoId?: string;
-  teamId?: number;
+  profilepictureurl?: string;
+  cognitoid?: string;
+  teamid?: number;
 }
 
 export interface Attachment {
   id: number;
-  fileURL: string;
-  fileName: string;
-  taskId: number;
-  uploadedById: number;
+  fileurl: string;
+  filename: string;
+  taskid: number;
+  uploadedbyid: number;
 }
 
 export interface Task {
@@ -45,12 +45,12 @@ export interface Task {
   status?: Status;
   priority?: Priority;
   tags?: string;
-  startDate?: string;
-  dueDate?: string;
+  startdate?: string;
+  duedate?: string;
   points?: number;
-  projectId: number;
-  authorUserId?: number;
-  assignedUserId?: number;
+  projectid: number;
+  authoruserid?: number;
+  assigneduserid?: number;
 
   author?: User;
   assignee?: User;
@@ -65,8 +65,8 @@ export interface SearchResults {
 }
 
 export interface Team {
-  teamId: number;
-  teamName: string;
-  productOwnerUserId?: number;
-  projectManagerUserId?: number;
+  teamid: number;
+  teamname: string;
+  productowneruserid?: number;
+  projectmanageruserid?: number;
 }

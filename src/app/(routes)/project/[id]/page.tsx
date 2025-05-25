@@ -1,7 +1,7 @@
 "use client";
 
 import { ProjectHeader } from "@/components/project/project-header";
-import { BoardView } from "@/components/project/view/board-view";
+import { BoardView } from "@/components/project/view/board/board-view";
 import { getAllProjects } from "@/lib/supabase/api/projects";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "next/navigation";

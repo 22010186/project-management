@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { signup } from "@/lib/supabase/api/actions";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Inputs {
   email: string;
@@ -24,6 +25,7 @@ export function RegisterForm({
   const { setDataUser } = useStateUser();
   const { changeAction } = useIsLogin();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const { register, handleSubmit } = useForm<Inputs>();
 
@@ -44,6 +46,8 @@ export function RegisterForm({
     });
 
     router.push("/");
+
+    queryClient.invalidateQueries({ queryKey: ["allProjects"] });
   };
 
   return (

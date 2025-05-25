@@ -60,7 +60,6 @@ const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
               type="text"
               placeholder="Search Task"
               className="pl-10 pr-3 py-2 text-md w-full focus:ring-0 focus:outline-none focus:shadow-none " // Add additional styling as needed
-              value=""
             />
           </div>
         </div>

@@ -34,7 +34,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@radix-ui/react-collapsible";
+} from "@/components/ui/collapsible";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
@@ -59,6 +59,7 @@ export function AppSidebar() {
   const query = useQuery({
     queryKey: ["allProjects"],
     queryFn: getAllProjects,
+    staleTime: 1000 * 60 * 5,
   });
 
   return (
