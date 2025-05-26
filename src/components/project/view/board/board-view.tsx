@@ -9,21 +9,13 @@ import { useEffect, useState } from "react";
 
 type BoardProps = {
   id: string;
+  tasks?: Task[];
   setIsModalNewTask: (isOpen: boolean) => void;
 };
 
 const taskStatus = ["To Do", "Work In Progress", "Under Review", "Completed"];
 
-export const BoardView = ({ id, setIsModalNewTask }: BoardProps) => {
-  const {
-    data: tasks,
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: [`task-project-${id}`],
-    queryFn: () => getTaskByProjectId(id),
-  });
-
+export const BoardView = ({ id, tasks, setIsModalNewTask }: BoardProps) => {
   const moveTask = async (taskId: string, toStatus: string) => {
     // if (!tasks) return;
 
@@ -34,15 +26,6 @@ export const BoardView = ({ id, setIsModalNewTask }: BoardProps) => {
 
     await updateTaskStatus(taskId, toStatus);
   };
-
-  if (isLoading)
-    return (
-      <div className="">
-        <LoaderIcon className="size-5 animate-spin" />
-      </div>
-    );
-
-  if (error) return <div>An error occurred while fetching tasks</div>;
 
   return (
     <DndProvider backend={HTML5Backend}>
