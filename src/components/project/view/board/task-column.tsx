@@ -1,17 +1,5 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Status, Task as TaskType } from "@/store/type";
 import { EllipsisVertical, Plus } from "lucide-react";
 import { useDrop } from "react-dnd";
@@ -19,13 +7,13 @@ import { Task } from "./task-view";
 import { useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
+import { AddTask } from "./add-task";
 
 type TaskColumnProps = {
   projectId: string;
   status: string;
   tasks: TaskType[];
   moveTask: (taskId: string, toStatus: string) => void;
-  setIsModalNewTask: (isOpen: boolean) => void;
 };
 
 const TaskColumn = ({
@@ -33,7 +21,6 @@ const TaskColumn = ({
   status,
   tasks,
   moveTask,
-  setIsModalNewTask,
 }: TaskColumnProps) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "task",
@@ -103,29 +90,7 @@ const TaskColumn = ({
             <div className="flex h-6 w-5 items-center justify-center dark:text-neutral-500">
               <EllipsisVertical size={26} className="cursor-pointer" />
             </div>
-            <Dialog>
-              <DialogTrigger>
-                <Badge variant="outline" className="p-3 cursor-pointer">
-                  <Plus size={26} />
-                </Badge>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle>Create Task</DialogTitle>
-                  <DialogDescription>
-                    Anyone who has this link will be able to view this.
-                  </DialogDescription>
-                </DialogHeader>
-                {/* Create Form Here */}
-                <DialogFooter className="sm:justify-start">
-                  <DialogClose asChild>
-                    <Button type="button" variant="secondary">
-                      Close
-                    </Button>
-                  </DialogClose>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
+            <AddTask status={status} />
           </div>
         </div>
       </div>

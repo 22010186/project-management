@@ -38,10 +38,10 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllProjects } from "@/lib/supabase/api/projects";
-import { useStateUser } from "@/store/state";
+import { useStateProject, useStateUser } from "@/store/state";
 
 export function AppSidebar() {
   const {
@@ -118,7 +118,7 @@ export function AppSidebar() {
 
         {/* Project */}
         <SidebarMenu>
-          <Collapsible className="group/collapsible">
+          <Collapsible defaultOpen className="group/collapsible">
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <Button
@@ -205,9 +205,16 @@ interface SidebarLinkProps {
 
 const SidebarLink = ({ href, icon: Icon, label }: SidebarLinkProps) => {
   const pathname = usePathname();
+  const { setName } = useStateProject();
+
   const isActive =
     pathname == href || (pathname == "/" && href == "/dashboard");
-  // const screenWidth = window.innerWidth;
+
+  useEffect(() => {
+    if (isActive) {
+      setName(label);
+    }
+  }, [isActive]);
 
   return (
     <Link href={href} className="w-full">

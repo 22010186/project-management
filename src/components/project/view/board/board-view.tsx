@@ -1,21 +1,18 @@
-import { getTaskByProjectId, updateTaskStatus } from "@/lib/supabase/api/tasks";
-import { useQuery } from "@tanstack/react-query";
-import { LoaderIcon } from "lucide-react";
+import { updateTaskStatus } from "@/lib/supabase/api/tasks";
+
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TaskColumn } from "./task-column";
-import { Status, Task } from "@/store/type";
-import { useEffect, useState } from "react";
+import { Task } from "@/store/type";
 
 type BoardProps = {
   id: string;
   tasks?: Task[];
-  setIsModalNewTask: (isOpen: boolean) => void;
 };
 
 const taskStatus = ["To Do", "Work In Progress", "Under Review", "Completed"];
 
-export const BoardView = ({ id, tasks, setIsModalNewTask }: BoardProps) => {
+export const BoardView = ({ id, tasks }: BoardProps) => {
   const moveTask = async (taskId: string, toStatus: string) => {
     // if (!tasks) return;
 
@@ -37,7 +34,6 @@ export const BoardView = ({ id, tasks, setIsModalNewTask }: BoardProps) => {
             status={status}
             tasks={tasks ?? []}
             moveTask={moveTask}
-            setIsModalNewTask={setIsModalNewTask}
           />
         ))}
       </div>

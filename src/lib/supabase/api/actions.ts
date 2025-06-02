@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 interface FormDataType {
+  name?: string;
   email: string;
   password: string;
 }
@@ -18,11 +19,14 @@ export async function login(data: FormDataType) {
 
   const { data: res, error } = await supabase.auth.signInWithPassword(data);
 
-  if (error) {
+  if (!res.user || error) {
     redirect("/error");
   }
 
-  return res;
+  return {
+    user: res.user,
+    error,
+  };
 }
 
 export async function signup(data: FormDataType) {

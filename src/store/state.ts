@@ -15,11 +15,60 @@ type ActionLogin = {
   changeAction: () => void;
 };
 
+export interface UserType {
+  id: string;
+  aud: string;
+  role: string;
+  email: string;
+  email_confirmed_at: Date;
+  phone: string;
+  confirmation_sent_at: Date;
+  confirmed_at: Date;
+  last_sign_in_at: Date;
+  app_metadata: AppMetadata;
+  user_metadata: Data;
+  identities: Identity[];
+  created_at: Date;
+  updated_at: Date;
+  is_anonymous: boolean;
+}
+
+export interface AppMetadata {
+  provider: string;
+  providers: string[];
+}
+
+export interface Identity {
+  identity_id: string;
+  id: string;
+  user_id: string;
+  identity_data: Data;
+  provider: string;
+  last_sign_in_at: Date;
+  created_at: Date;
+  updated_at: Date;
+  email: string;
+}
+
+export interface Data {
+  email: string;
+  email_verified: boolean;
+  phone_verified: boolean;
+  sub: string;
+}
+
 type StateUser = {
-  dataUser: any;
+  dataUser: UserType;
 };
 type ActionUser = {
   setDataUser: (data: any) => void;
+};
+
+type StateProjectName = {
+  name: string;
+};
+type ActionProjectName = {
+  setName: (data: string) => void;
 };
 
 const useSidebar = create<State & Actions>((set) => ({
@@ -34,8 +83,13 @@ const useIsLogin = create<StateLogin & ActionLogin>((set) => ({
 }));
 
 const useStateUser = create<StateUser & ActionUser>((set) => ({
-  dataUser: {},
-  setDataUser: (data: any) => set((state) => ({ dataUser: data })),
+  dataUser: {} as UserType,
+  setDataUser: (data: UserType) => set((state) => ({ dataUser: data })),
 }));
 
-export { useSidebar, useIsLogin, useStateUser };
+const useStateProject = create<StateProjectName & ActionProjectName>((set) => ({
+  name: "",
+  setName: (name: string) => set((state) => ({ name: name })),
+}));
+
+export { useSidebar, useIsLogin, useStateUser, useStateProject };
