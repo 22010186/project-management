@@ -1,12 +1,21 @@
-import { useStateUser } from "@/store/state";
 import { createClient } from "../client";
+import { User } from "@/store/type";
 
-export const getUser = async () => {
-  const { dataUser, setDataUser } = useStateUser();
-  const { data, error } = await createClient().auth.getUser();
+export const getUserData = async () => {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.getUser();
   if (error) throw error;
-  setDataUser(data.user);
-  return data.user;
+
+  const { data: userData } = await supabase
+    .from("User")
+    .select()
+    .eq("cognitoid", data.user.id);
+  const userid = (userData as User[])[0].userid;
+
+  return {
+    ...data.user,
+    userid,
+  };
 };
 
 export const createUser = async (cognitoid: string, username: string) => {

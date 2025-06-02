@@ -6,15 +6,14 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { User } from "lucide-react";
 import { Input } from "../ui/input";
 import { Search, AlignJustify } from "lucide-react";
 import { BrandLogo } from "../logo";
 import { useIsLogin, useSidebar, useStateUser } from "@/store/state";
 import { createClient } from "@/lib/supabase/client";
 import { UserDropdown } from "./user-dropdown";
-import { toast } from "sonner";
 import { SidebarTrigger } from "../ui/sidebar";
+import { getUserData } from "@/lib/supabase/api/auth";
 
 interface HeaderProps {
   className?: string;
@@ -23,24 +22,14 @@ interface HeaderProps {
 export const NavBar = ({ className }: HeaderProps) => {
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
-  const { open } = useSidebar();
-  const supabase = createClient();
   const { dataUser: user, setDataUser } = useStateUser();
   const { changeAction } = useIsLogin();
 
-  async function fetchUser() {
-    const currentUser = await supabase.auth.getUser();
-
-    if (currentUser.error?.name) {
-      toast(currentUser.error.name, {
-        description: currentUser.error.message,
-      });
-    }
-
-    setDataUser(currentUser.data.user);
-  }
-
   useEffect(() => {
+    async function fetchUser() {
+      const data = await getUserData();
+      if (data) setDataUser(data);
+    }
     fetchUser();
   }, []);
 

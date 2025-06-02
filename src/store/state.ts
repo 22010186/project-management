@@ -31,6 +31,7 @@ export interface UserType {
   created_at: Date;
   updated_at: Date;
   is_anonymous: boolean;
+  userid?: number;
 }
 
 export interface AppMetadata {
@@ -66,9 +67,11 @@ type ActionUser = {
 
 type StateProjectName = {
   name: string;
+  id: number;
 };
 type ActionProjectName = {
   setName: (data: string) => void;
+  setId: (id: number) => void;
 };
 
 const useSidebar = create<State & Actions>((set) => ({
@@ -88,8 +91,10 @@ const useStateUser = create<StateUser & ActionUser>((set) => ({
 }));
 
 const useStateProject = create<StateProjectName & ActionProjectName>((set) => ({
+  id: 0,
   name: "",
   setName: (name: string) => set((state) => ({ name: name })),
+  setId: (id: number) => set((state) => ({ id: id })),
 }));
 
 export { useSidebar, useIsLogin, useStateUser, useStateProject };

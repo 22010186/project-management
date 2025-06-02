@@ -4,10 +4,9 @@ import { TaskCard } from "./task-card";
 type ListProps = {
   id: string;
   tasks?: Task[];
-  setIsModalNewTask: (isOpen: boolean) => void;
 };
 
-const ListView = ({ id, tasks, setIsModalNewTask }: ListProps) => {
+const ListView = ({ id, tasks }: ListProps) => {
   return (
     <div className="px-4 pb-8 xl:px-6">
       <div className="pt-5">{/* <Header name="List" /> */}</div>

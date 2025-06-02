@@ -137,6 +137,7 @@ export function AppSidebar() {
                         key={project.id}
                         icon={Briefcase}
                         label={project.name}
+                        id={project.id}
                         href={`/project/${project.id}`}
                       />
                     ))}
@@ -201,11 +202,12 @@ interface SidebarLinkProps {
   href: string;
   icon: LucideIcon;
   label: string;
+  id?: number;
 }
 
-const SidebarLink = ({ href, icon: Icon, label }: SidebarLinkProps) => {
+const SidebarLink = ({ href, icon: Icon, label, id }: SidebarLinkProps) => {
   const pathname = usePathname();
-  const { setName } = useStateProject();
+  const { setName, setId } = useStateProject();
 
   const isActive =
     pathname == href || (pathname == "/" && href == "/dashboard");
@@ -213,6 +215,9 @@ const SidebarLink = ({ href, icon: Icon, label }: SidebarLinkProps) => {
   useEffect(() => {
     if (isActive) {
       setName(label);
+      if (id) {
+        setId(id);
+      }
     }
   }, [isActive]);
 

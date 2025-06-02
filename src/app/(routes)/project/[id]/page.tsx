@@ -45,20 +45,8 @@ export default function Project() {
         </div>
       ) : (
         <>
-          {activeTab == "Board" && (
-            <BoardView
-              id={id}
-              tasks={tasks}
-              setIsModalNewTask={setIsModalNewTaskOpen}
-            />
-          )}
-          {activeTab == "List" && (
-            <ListView
-              id={id}
-              tasks={tasks}
-              setIsModalNewTask={setIsModalNewTaskOpen}
-            />
-          )}
+          {activeTab == "Board" && <BoardView id={id} tasks={tasks} />}
+          {activeTab == "List" && <ListView id={id} tasks={tasks} />}
 
           {/* Timeline and table view at 4h23m */}
         </>
