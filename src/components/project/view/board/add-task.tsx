@@ -28,17 +28,20 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { createTask } from "@/lib/supabase/api/tasks";
+import { useStateProject, useStateUser } from "@/store/state";
 
 type Inputs = {
   title: string;
   description: string;
   status: Status;
   priority: Priority;
-  tags: string;
-  points: number;
+  tags?: string;
+  points?: number;
   assigneduserid: number;
   startdate: string;
   duedate: string;
+  authoruserid: number;
+  projectid: number;
 };
 
 type Props = {
@@ -49,11 +52,21 @@ const AddTask = ({ status }: Props) => {
   const { register, handleSubmit, setValue } = useForm<Inputs>();
 
   const [open, setOpen] = useState(false);
+  const { dataUser } = useStateUser();
+  const { id } = useStateProject();
 
   const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
+    data.authoruserid = Number(dataUser.userid);
+    data.projectid = id;
+    data.assigneduserid = Number(data.assigneduserid);
+    if (data.points) {
+      data.points = Number(data.points);
+    } else {
+      data.points = undefined;
+    }
     console.log(data);
-    toast("Success", { description: "Task created" });
     await createTask(data);
+    toast("Success", { description: "Task created" });
     setOpen(false);
   };
 
@@ -160,6 +173,15 @@ const AddTask = ({ status }: Props) => {
                 type="number"
                 placeholder="2"
                 {...register("points")}
+              />
+            </div>
+            <div className="grid gap-3 w-full">
+              <Label htmlFor="points">Tags</Label>
+              <Input
+                id="points"
+                type="text"
+                placeholder="eg: AI, Machine Learning, ..."
+                {...register("tags")}
               />
             </div>
             <div className="grid gap-3 w-full">
