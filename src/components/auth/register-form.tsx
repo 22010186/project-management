@@ -11,8 +11,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { signup } from "@/lib/supabase/api/actions";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
+import { createUser } from "@/lib/supabase/api/auth";
 
 interface Inputs {
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -38,6 +40,9 @@ export function RegisterForm({
     }
 
     const { user } = await signup(data);
+    if (user) {
+      await createUser(user.id, data.name);
+    }
 
     setDataUser(user);
 
@@ -61,6 +66,16 @@ export function RegisterForm({
                 <p className="text-balance text-muted-foreground">
                   Create an ProjectM account
                 </p>
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="email">Name</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="eg: John Doe"
+                  required
+                  {...register("name")}
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>

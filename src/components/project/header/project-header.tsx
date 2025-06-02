@@ -1,22 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "../ui/button";
-import { Clock, Filter, Grid3X3, List, Share, Table } from "lucide-react";
-import { Input } from "../ui/input";
+import { Button } from "../../ui/button";
+import { Clock, Filter, Grid3X3, List, Plus, Share, Table } from "lucide-react";
+import { Input } from "../../ui/input";
+import { HeaderTitle } from "./header-title";
 
 type Props = {
+  title: string;
   activeTab: string;
   setActiveTab: (tabName: string) => void;
 };
 
-const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
+const ProjectHeader = ({ title, activeTab, setActiveTab }: Props) => {
   const [isModalNewProject, setIsModalNewProject] = useState(false);
 
   return (
     <div className="">
       <div className="py-6 lg:pb-4 lg:pt-8">
-        <HeaderTitle name="Project X" />
+        <HeaderTitle name={title} />
       </div>
 
       <div className="flex flex-wrap-reverse gap-2 border-y border-gray-200 py-2 dark:border-gray-600 md:items-center">
@@ -69,28 +71,6 @@ const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
 };
 
 export { ProjectHeader };
-
-type HeaderTitleProps = {
-  name: string;
-  buttonComponent?: any;
-  isSmallText?: boolean;
-};
-const HeaderTitle = ({
-  name,
-  isSmallText,
-  buttonComponent,
-}: HeaderTitleProps) => {
-  return (
-    <div className="mb-5 flex w-full items-center justify-between">
-      <h1
-        className={`${isSmallText} ? 'text-lg' : 'text-2xl' font-semibold dark:text-white`}
-      >
-        {name}
-      </h1>
-      {buttonComponent}
-    </div>
-  );
-};
 
 type TabButtonProps = {
   name: string;

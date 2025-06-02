@@ -28,16 +28,21 @@ export function LoginForm({
   const queryClient = useQueryClient();
 
   const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
-    const { user } = await login(data);
+    const { user, error } = await login(data);
+    if (error) {
+      toast("Error", {
+        description: error,
+      });
+      return;
+    }
     setDataUser(user);
 
     toast("Success", {
       description: "Login successful",
     });
 
-    router.push("/");
-
     queryClient.invalidateQueries({ queryKey: ["allProjects"] });
+    router.push("/");
   };
 
   return (
