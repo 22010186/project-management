@@ -19,6 +19,7 @@ import { useState } from "react";
 type HeaderTitleProps = {
   name: string;
   isSmallText?: boolean;
+  button: boolean;
 };
 
 type Inputs = {
@@ -27,7 +28,7 @@ type Inputs = {
   startDate: string;
   endDate: string;
 };
-const HeaderTitle = ({ name, isSmallText }: HeaderTitleProps) => {
+const HeaderTitle = ({ name, isSmallText, button }: HeaderTitleProps) => {
   const { register, handleSubmit } = useForm<Inputs>();
   const [open, setOpen] = useState(false);
   const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -42,65 +43,67 @@ const HeaderTitle = ({ name, isSmallText }: HeaderTitleProps) => {
       >
         {name}
       </h1>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button className="ml-full">
-            <Plus size={20} /> New Board
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <form onSubmit={handleSubmit(handleOnSubmit)}>
-            <DialogHeader>
-              <DialogTitle>Create New Project</DialogTitle>
-              <DialogDescription>
-                Make changes to input fields here. Click save when you&apos;re
-                done.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4">
-              <div className="grid gap-3">
-                <Label htmlFor="project-name">Project Name</Label>
-                <Input
-                  id="project-name"
-                  placeholder="New Project"
-                  required
-                  {...register("projectName")}
-                />
+      {button && (
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button className="ml-full">
+              <Plus size={20} /> New Board
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <form onSubmit={handleSubmit(handleOnSubmit)}>
+              <DialogHeader>
+                <DialogTitle>Create New Project</DialogTitle>
+                <DialogDescription>
+                  Make changes to input fields here. Click save when you&apos;re
+                  done.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4">
+                <div className="grid gap-3">
+                  <Label htmlFor="project-name">Project Name</Label>
+                  <Input
+                    id="project-name"
+                    placeholder="New Project"
+                    required
+                    {...register("projectName")}
+                  />
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="description">Description</Label>
+                  <Input id="description" {...register("description")} />
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="start-date">Start Date</Label>
+                  <Input
+                    id="start-date"
+                    type="date"
+                    required
+                    placeholder="mm/dd/yyyy"
+                    {...register("startDate")}
+                  />
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="end-date">End Date</Label>
+                  <Input
+                    id="end-date"
+                    type="date"
+                    required
+                    placeholder="mm/dd/yyyy"
+                    {...register("endDate")}
+                  />
+                </div>
               </div>
-              <div className="grid gap-3">
-                <Label htmlFor="description">Description</Label>
-                <Input id="description" {...register("description")} />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="start-date">Start Date</Label>
-                <Input
-                  id="start-date"
-                  type="date"
-                  required
-                  placeholder="mm/dd/yyyy"
-                  {...register("startDate")}
-                />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="end-date">End Date</Label>
-                <Input
-                  id="end-date"
-                  type="date"
-                  required
-                  placeholder="mm/dd/yyyy"
-                  {...register("endDate")}
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
-              </DialogClose>
-              <Button type="submit">Save Project</Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DialogClose>
+                <Button type="submit">Save Project</Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 };

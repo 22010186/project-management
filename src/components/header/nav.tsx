@@ -7,10 +7,9 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Input } from "../ui/input";
-import { Search, AlignJustify } from "lucide-react";
+import { Search } from "lucide-react";
 import { BrandLogo } from "../logo";
-import { useIsLogin, useSidebar, useStateUser } from "@/store/state";
-import { createClient } from "@/lib/supabase/client";
+import { useIsLogin, useStateUser } from "@/store/state";
 import { UserDropdown } from "./user-dropdown";
 import { SidebarTrigger } from "../ui/sidebar";
 import { getUserData } from "@/lib/supabase/api/auth";
@@ -41,12 +40,9 @@ export const NavBar = ({ className }: HeaderProps) => {
       )}
     >
       <div className="container flex h-16 items-center justify-between mx-auto">
-        <Link
-          href={user ? "/projects" : "/"}
-          className="hidden md:flex items-center space-x-2 font-bold text-xl hover:text-primary transition-colors text-blue-400 font-mono"
-        >
+        <div className="hidden md:flex items-center space-x-2 font-bold text-xl hover:text-primary transition-colors text-blue-400 font-mono">
           <BrandLogo />
-        </Link>
+        </div>
 
         <div className="md:hidden cursor-pointer">
           <SidebarTrigger />

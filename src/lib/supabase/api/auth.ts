@@ -11,9 +11,11 @@ export const getUserData = async () => {
     .select()
     .eq("cognitoid", data.user.id);
   const userid = (userData as User[])[0].userid;
+  const username = (userData as User[])[0].username;
 
   return {
     ...data.user,
+    username,
     userid,
   };
 };
@@ -25,4 +27,11 @@ export const createUser = async (cognitoid: string, username: string) => {
   });
 
   if (error) throw error;
+};
+
+export const getAllUser = async () => {
+  const supabase = createClient();
+  const { data, error } = await supabase.from("User").select();
+  if (error) throw error;
+  return data as User[];
 };
