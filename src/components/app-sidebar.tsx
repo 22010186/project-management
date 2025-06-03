@@ -4,10 +4,8 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubItem,
@@ -42,39 +40,34 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllProjects } from "@/lib/supabase/api/projects";
 import { useStateProject, useStateUser } from "@/store/state";
+import { Loading } from "./loading";
 
 export function AppSidebar() {
-  const {
-    state,
-    open,
-    setOpen,
-    openMobile,
-    setOpenMobile,
-    isMobile,
-    toggleSidebar,
-  } = useSidebar();
-
   const { dataUser: user } = useStateUser();
+  const pathname = usePathname();
 
-  const query = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["allProjects"],
     queryFn: getAllProjects,
     staleTime: 1000 * 60 * 5,
   });
 
+  if (isLoading) return <Loading />;
+  if (error) throw error;
+
   return (
     <Sidebar>
       <SidebarHeader>
-        <div className="z-70 flex min-h-14 w-full items-center justify-between px-6">
-          <span className="font-extrabold font-mono text-lg">ProjectM</span>
+        <div className="z-70 flex min-h-14 w-full items-center justify-center px-6">
+          <span className="font-extrabold font-mono text-lg">Welcome</span>
         </div>
 
         {/* Team */}
-        <div className="flex items-center justify-center gap-5 border-y-[1.5px] border-gray-200 dark:border-gray-700 py-2">
-          <BrandLogo />
+        <div className="flex items-center justify-center gap-1 border-y-[1.5px] border-gray-200 dark:border-gray-700 py-2">
+          <BrandLogo className="hidden" />
           {user && (
             <span className="text-gray-500 flex items-center gap-1">
-              <Lock size={20} />
+              <Lock size={16} />
               <span className="text-sm">Private</span>
             </span>
           )}
@@ -96,7 +89,11 @@ export function AppSidebar() {
               <CollapsibleContent>
                 <SidebarMenuSub>
                   <SidebarMenuSubItem />
-                  <SidebarLink icon={Home} label="Home" href="/" />
+                  <SidebarLink
+                    icon={Home}
+                    label="Dashboard"
+                    href="/dashboard"
+                  />
                   <SidebarLink
                     icon={Briefcase}
                     label="Timeline"
@@ -108,7 +105,7 @@ export function AppSidebar() {
                     label="Settings"
                     href="/settings"
                   />
-                  <SidebarLink icon={User} label="User" href="/user" />
+                  <SidebarLink icon={User} label="Users" href="/users" />
                   <SidebarLink icon={Users} label="Teams" href="/teams" />
                 </SidebarMenuSub>
               </CollapsibleContent>
@@ -131,8 +128,8 @@ export function AppSidebar() {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  {query?.data &&
-                    query?.data.map((project) => (
+                  {data &&
+                    data.map((project) => (
                       <SidebarLink
                         key={project.id}
                         icon={Briefcase}
@@ -209,8 +206,7 @@ const SidebarLink = ({ href, icon: Icon, label, id }: SidebarLinkProps) => {
   const pathname = usePathname();
   const { setName, setId } = useStateProject();
 
-  const isActive =
-    pathname == href || (pathname == "/" && href == "/dashboard");
+  const isActive = pathname == href;
 
   useEffect(() => {
     if (isActive) {

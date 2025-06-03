@@ -32,6 +32,7 @@ export interface UserType {
   updated_at: Date;
   is_anonymous: boolean;
   userid?: number;
+  username?: string;
 }
 
 export interface AppMetadata {

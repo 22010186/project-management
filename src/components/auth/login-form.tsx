@@ -42,7 +42,7 @@ export function LoginForm({
     });
 
     queryClient.invalidateQueries({ queryKey: ["allProjects"] });
-    router.push("/");
+    router.push("/dashboard");
   };
 
   return (

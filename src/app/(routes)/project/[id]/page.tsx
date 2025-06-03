@@ -1,12 +1,12 @@
 "use client";
 
+import { Loading } from "@/components/loading";
 import { ProjectHeader } from "@/components/project/header/project-header";
 import { BoardView } from "@/components/project/view/board/board-view";
 import { ListView } from "@/components/project/view/list/list-view";
 import { getTaskByProjectId } from "@/lib/supabase/api/tasks";
 import { useStateProject } from "@/store/state";
 import { useQuery } from "@tanstack/react-query";
-import { LoaderIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
@@ -18,7 +18,6 @@ export default function Project() {
   const params = useParams<Props>();
   const { id } = params;
   const [activeTab, setActiveTab] = useState("Board");
-  const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
   const { name } = useStateProject();
 
   const {
@@ -30,7 +29,8 @@ export default function Project() {
     queryFn: () => getTaskByProjectId(id),
   });
 
-  if (error) return <div>An error occurred while fetching tasks</div>;
+  if (isLoading) return <Loading />;
+  if (error) throw error;
 
   return (
     <div>
@@ -39,18 +39,9 @@ export default function Project() {
         setActiveTab={setActiveTab}
         title={name}
       />
-      {isLoading ? (
-        <div className="">
-          <LoaderIcon className="size-5 animate-spin" />
-        </div>
-      ) : (
-        <>
-          {activeTab == "Board" && <BoardView id={id} tasks={tasks} />}
-          {activeTab == "List" && <ListView id={id} tasks={tasks} />}
 
-          {/* Timeline and table view at 4h23m */}
-        </>
-      )}
+      {activeTab == "Board" && <BoardView id={id} tasks={tasks} />}
+      {activeTab == "List" && <ListView id={id} tasks={tasks} />}
     </div>
   );
 }
