@@ -41,6 +41,7 @@ export function LoginForm({
       description: "Login successful",
     });
 
+    queryClient.invalidateQueries({ queryKey: ["user-data"] });
     queryClient.invalidateQueries({ queryKey: ["allProjects"] });
     router.push("/dashboard");
   };

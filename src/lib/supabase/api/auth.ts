@@ -12,11 +12,13 @@ export const getUserData = async () => {
     .eq("cognitoid", data.user.id);
   const userid = (userData as User[])[0].userid;
   const username = (userData as User[])[0].username;
+  const teamid = (userData as User[])[0].teamid;
 
   return {
     ...data.user,
     username,
     userid,
+    teamid,
   };
 };
 

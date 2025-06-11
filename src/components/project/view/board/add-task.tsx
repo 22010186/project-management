@@ -29,6 +29,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { createTask } from "@/lib/supabase/api/tasks";
 import { useStateProject, useStateUser } from "@/store/state";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Inputs = {
   title: string;
@@ -55,6 +56,8 @@ const AddTask = ({ status }: Props) => {
   const { dataUser } = useStateUser();
   const { id } = useStateProject();
 
+  const queryClient = useQueryClient();
+
   const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
     data.authoruserid = Number(dataUser.userid);
     data.projectid = id;
@@ -64,8 +67,8 @@ const AddTask = ({ status }: Props) => {
     } else {
       data.points = undefined;
     }
-    console.log(data);
     await createTask(data);
+    queryClient.invalidateQueries({ queryKey: ["task-all-project"] });
     toast("Success", { description: "Task created" });
     setOpen(false);
   };

@@ -50,8 +50,9 @@ export function RegisterForm({
       description: "Created account",
     });
 
-    router.push("/dashboard");
+    router.push("/");
 
+    queryClient.invalidateQueries({ queryKey: ["user-data"] });
     queryClient.invalidateQueries({ queryKey: ["allProjects"] });
   };
 

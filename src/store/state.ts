@@ -1,12 +1,5 @@
 import { create } from "zustand";
-
-type State = {
-  openSidebar: boolean;
-};
-type Actions = {
-  open: () => void;
-  close: () => void;
-};
+import { Project, Task } from "./type";
 
 type StateLogin = {
   isLogin: boolean;
@@ -33,6 +26,7 @@ export interface UserType {
   is_anonymous: boolean;
   userid?: number;
   username?: string;
+  teamid?: number;
 }
 
 export interface AppMetadata {
@@ -69,17 +63,19 @@ type ActionUser = {
 type StateProjectName = {
   name: string;
   id: number;
+  projects?: Project[];
 };
 type ActionProjectName = {
   setName: (data: string) => void;
   setId: (id: number) => void;
+  setProjects: (data: Project[]) => void;
 };
-
-const useSidebar = create<State & Actions>((set) => ({
-  openSidebar: true,
-  open: () => set((state) => ({ openSidebar: true })),
-  close: () => set((state) => ({ openSidebar: false })),
-}));
+type StateAllTasks = {
+  tasks: Task[];
+};
+type ActionAllTasks = {
+  setTasks: (tasks: Task[]) => void;
+};
 
 const useIsLogin = create<StateLogin & ActionLogin>((set) => ({
   isLogin: true,
@@ -94,8 +90,16 @@ const useStateUser = create<StateUser & ActionUser>((set) => ({
 const useStateProject = create<StateProjectName & ActionProjectName>((set) => ({
   id: 0,
   name: "",
+  projects: [],
   setName: (name: string) => set((state) => ({ name: name })),
   setId: (id: number) => set((state) => ({ id: id })),
+  setProjects: (projects: Project[]) =>
+    set((state) => ({ projects: projects })),
 }));
 
-export { useSidebar, useIsLogin, useStateUser, useStateProject };
+const useStateAllTask = create<StateAllTasks & ActionAllTasks>((set) => ({
+  tasks: [],
+  setTasks: (tasks: Task[]) => set((state) => ({ tasks: tasks })),
+}));
+
+export { useIsLogin, useStateUser, useStateProject, useStateAllTask };

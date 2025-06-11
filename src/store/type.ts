@@ -65,8 +65,14 @@ export interface SearchResults {
 }
 
 export interface Team {
-  teamid: number;
+  id: number;
   teamname: string;
   productowneruserid?: number;
   projectmanageruserid?: number;
+}
+
+export interface ProjectTeam {
+  id: number;
+  teamid: number;
+  projectid: number;
 }

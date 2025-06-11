@@ -41,14 +41,21 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllProjects } from "@/lib/supabase/api/projects";
 import { useStateProject, useStateUser } from "@/store/state";
 import { Loading } from "./loading";
+import { Project } from "@/store/type";
 
 export function AppSidebar() {
   const { dataUser: user } = useStateUser();
+  const { setProjects } = useStateProject();
   const pathname = usePathname();
 
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["allProjects"],
-    queryFn: getAllProjects,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["projects"],
+    queryFn: async () => {
+      const data = await getAllProjects(user.teamid);
+      setProjects(data as Project[]);
+      return data;
+    },
+    enabled: !!user?.teamid,
     staleTime: 1000 * 60 * 5,
   });
 
@@ -59,7 +66,9 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader>
         <div className="z-70 flex min-h-14 w-full items-center justify-center px-6">
-          <span className="font-extrabold font-mono text-lg">Welcome</span>
+          <span className="font-extrabold font-mono text-lg">
+            Welcome {user?.username}
+          </span>
         </div>
 
         {/* Team */}
@@ -129,15 +138,18 @@ export function AppSidebar() {
               <CollapsibleContent>
                 <SidebarMenuSub>
                   {data &&
-                    data.map((project) => (
-                      <SidebarLink
-                        key={project.id}
-                        icon={Briefcase}
-                        label={project.name}
-                        id={project.id}
-                        href={`/project/${project.id}`}
-                      />
-                    ))}
+                    data.map(
+                      (project) =>
+                        project && (
+                          <SidebarLink
+                            key={project.id}
+                            icon={Briefcase}
+                            label={project.name}
+                            id={project.id}
+                            href={`/project/${project.id}`}
+                          />
+                        )
+                    )}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
