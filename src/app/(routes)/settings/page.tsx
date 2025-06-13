@@ -32,11 +32,11 @@ export default function SettingPage() {
         </div> */}
         <div className="grid gap-3">
           <Label>Username</Label>
-          <Input defaultValue={dataUser.username} readOnly />
+          <Input defaultValue={dataUser?.username} readOnly />
         </div>
         <div className="grid gap-3">
           <Label>Email</Label>
-          <Input defaultValue={dataUser.email} readOnly />
+          <Input defaultValue={dataUser?.email} readOnly />
         </div>
       </div>
     </div>

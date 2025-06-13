@@ -59,7 +59,7 @@ const AddTask = ({ status }: Props) => {
   const queryClient = useQueryClient();
 
   const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
-    data.authoruserid = Number(dataUser.userid);
+    data.authoruserid = Number(dataUser?.userid);
     data.projectid = id;
     data.assigneduserid = Number(data.assigneduserid);
     if (data.points) {

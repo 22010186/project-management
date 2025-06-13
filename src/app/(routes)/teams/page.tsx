@@ -38,8 +38,8 @@ export default function TeamsPage() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["allTeams"],
     queryFn: async () => {
-      const teams = await getTeams(user.teamid);
-      setOwner(teams[0]?.productownerusername == user.username);
+      const teams = await getTeams(user?.teamid);
+      setOwner(teams[0]?.productownerusername == user?.username);
       return teams;
     },
     enabled: !!user?.teamid,
@@ -49,11 +49,11 @@ export default function TeamsPage() {
   const { register, handleSubmit } = useForm<Team>();
 
   const handleOnSubmit: SubmitHandler<Team> = async (data) => {
-    if (data.projectmanageruserid == user.userid) {
+    if (data.projectmanageruserid == user?.userid) {
       toast("Error", { description: "You can't invite yourself" });
       return;
     }
-    data.productowneruserid = user.userid;
+    data.productowneruserid = user?.userid;
     const { data: team } = await createTeams(data);
     if (!team) {
       throw new Error("Team not created");

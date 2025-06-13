@@ -51,7 +51,7 @@ export function AppSidebar() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["projects"],
     queryFn: async () => {
-      const data = await getAllProjects(user.teamid);
+      const data = await getAllProjects(user?.teamid);
       setProjects(data as Project[]);
       return data;
     },
