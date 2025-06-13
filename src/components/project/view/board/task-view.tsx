@@ -6,6 +6,17 @@ import { format } from "date-fns";
 import Image from "next/image";
 import { EllipsisVertical, MessageSquareMore } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { deleteTask } from "@/lib/supabase/api/tasks";
+import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 
 type TaskProps = {
   task: TaskType;
@@ -31,6 +42,13 @@ const Task = ({ task }: TaskProps) => {
     ? format(new Date(task.duedate), "P")
     : "";
   const numberOfComments = task.comments?.length ?? 0;
+
+  const queryClient = useQueryClient();
+  const handleDeleteTask = async (taskid: number) => {
+    await deleteTask(taskid);
+    toast("Success", { description: "Task deleted" });
+    queryClient.invalidateQueries({ queryKey: ["task-all-project"] });
+  };
 
   const priorityTag = ({ priority }: { priority: TaskType["priority"] }) => {
     return (
@@ -84,9 +102,23 @@ const Task = ({ task }: TaskProps) => {
               ))}
             </div>
           </div>
-          <button className="flex h-6 w-4 flex-shrink-0 items-center justify-center dark:text-neutral-500">
-            <EllipsisVertical size={20} className="cursor-pointer" />
-          </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <button className="flex h-6 w-4 flex-shrink-0 items-center justify-center dark:text-neutral-500">
+                <EllipsisVertical size={20} className="cursor-pointer" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent side="left">
+              <DropdownMenuLabel>
+                <button
+                  onClick={() => handleDeleteTask(task.id)}
+                  className="size-full hover:underline cursor-pointer text-red-500"
+                >
+                  Delete
+                </button>
+              </DropdownMenuLabel>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         <div className="my-3 flex items-center justify-between">

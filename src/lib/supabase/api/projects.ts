@@ -99,3 +99,19 @@ export const createProject = async (
     throw new Error(error.message);
   }
 };
+
+export const deleteProject = async (projectid: number) => {
+  const supabase = createClient();
+  try {
+    await supabase.from("projectteam").delete().eq("projectid", projectid);
+    const { error } = await supabase
+      .from("project")
+      .delete()
+      .eq("id", projectid);
+
+    await supabase.from("task").delete().eq("projectid", projectid);
+    if (error) throw error;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};

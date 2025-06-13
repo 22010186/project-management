@@ -71,3 +71,14 @@ export const createTeams = async (team: Partial<Team>) => {
     throw new Error(error.message);
   }
 };
+
+export const leaveTeam = async (userid: number, teamid: number) => {
+  const supabase = createClient();
+  try {
+    await supabase.from("User").update({ teamid: null }).eq("userid", userid);
+    await supabase.from("team").delete().eq("id", teamid);
+    await supabase.from("projectteam").delete().eq("teamid", teamid);
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};

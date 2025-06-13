@@ -51,3 +51,11 @@ export const updateTaskStatus = async (taskId: string, status: string) => {
     return data as Task[];
   }
 };
+
+export const deleteTask = async (taskId: number) => {
+  const { data, error } = await createClient()
+    .from("task")
+    .delete()
+    .eq("id", taskId);
+  if (error) throw error;
+};

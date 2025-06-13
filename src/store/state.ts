@@ -55,9 +55,11 @@ export interface Data {
 
 type StateUser = {
   dataUser: UserType;
+  isOwner?: boolean;
 };
 type ActionUser = {
   setDataUser: (data: any) => void;
+  setOwner: (data: boolean) => void;
 };
 
 type StateProjectName = {
@@ -84,7 +86,9 @@ const useIsLogin = create<StateLogin & ActionLogin>((set) => ({
 
 const useStateUser = create<StateUser & ActionUser>((set) => ({
   dataUser: {} as UserType,
+  isOwner: false,
   setDataUser: (data: UserType) => set((state) => ({ dataUser: data })),
+  setOwner: (data: boolean) => set((state) => ({ isOwner: data })),
 }));
 
 const useStateProject = create<StateProjectName & ActionProjectName>((set) => ({
@@ -98,7 +102,7 @@ const useStateProject = create<StateProjectName & ActionProjectName>((set) => ({
 }));
 
 const useStateAllTask = create<StateAllTasks & ActionAllTasks>((set) => ({
-  tasks: [],
+  tasks: [] as Task[],
   setTasks: (tasks: Task[]) => set((state) => ({ tasks: tasks })),
 }));
 

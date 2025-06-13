@@ -6,7 +6,7 @@ import { TaskChart } from "@/components/dashboard/task-chart";
 import { TaskStats } from "@/components/dashboard/task-status";
 import { useSidebar } from "@/components/ui/sidebar";
 import { getTasksByProjects } from "@/lib/supabase/api/tasks";
-import { useStateProject } from "@/store/state";
+import { useStateAllTask, useStateProject } from "@/store/state";
 import { Task } from "@/store/type";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -18,6 +18,7 @@ export default function Dashboard() {
   }, []);
 
   const { projects } = useStateProject();
+  const { setTasks } = useStateAllTask();
 
   const {
     data: tasks,
@@ -25,7 +26,11 @@ export default function Dashboard() {
     isLoading,
   } = useQuery({
     queryKey: [`task-all-project`],
-    queryFn: () => getTasksByProjects(projects!),
+    queryFn: async () => {
+      const data = await getTasksByProjects(projects ?? []);
+      setTasks(data);
+      return data;
+    },
     enabled: !!projects?.length,
     staleTime: 1000 * 60 * 5,
   });

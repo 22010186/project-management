@@ -2,7 +2,6 @@
 
 import { Loading } from "@/components/loading";
 import { HeaderTitle } from "@/components/project/header/header-title";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,7 +11,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,7 +23,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { createTeams, getTeams } from "@/lib/supabase/api/teams";
+import { createTeams, getTeams, leaveTeam } from "@/lib/supabase/api/teams";
 import { useStateUser } from "@/store/state";
 import { Team } from "@/store/type";
 import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -35,11 +33,15 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 export default function TeamsPage() {
-  const { dataUser: user } = useStateUser();
+  const { dataUser: user, isOwner, setOwner } = useStateUser();
   const [open, setOpen] = useState(false);
   const { data, isLoading, error } = useQuery({
     queryKey: ["allTeams"],
-    queryFn: () => getTeams(user.teamid),
+    queryFn: async () => {
+      const teams = await getTeams(user.teamid);
+      setOwner(teams[0]?.productownerusername == user.username);
+      return teams;
+    },
     enabled: !!user?.teamid,
   });
   const queryClient = useQueryClient();
@@ -57,8 +59,18 @@ export default function TeamsPage() {
       throw new Error("Team not created");
     }
     toast("Success", { description: "Team created" });
-    queryClient.invalidateQueries({ queryKey: ["projects"] });
+    queryClient.invalidateQueries({ queryKey: ["allTeams"] });
     setOpen(false);
+  };
+
+  const handleClickToLeave = async (userid?: number, teamid?: number) => {
+    if (!userid || !teamid) {
+      toast("Error", { description: "User or team not found" });
+      return;
+    }
+    await leaveTeam(userid, teamid);
+    toast("Success", { description: "You left the team" });
+    queryClient.invalidateQueries({ queryKey: ["allTeams"] });
   };
 
   if (isLoading) return <Loading />;
@@ -100,13 +112,25 @@ export default function TeamsPage() {
                 <TableCell>{team.productownerusername}</TableCell>
                 <TableCell>{team.projectmanagerusername}</TableCell>
                 <TableCell>
-                  {team.productownerusername == user.username ? (
-                    <Button variant="destructive" size="sm">
+                  {isOwner ? (
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() =>
+                        handleClickToLeave(team.projectmanageruserid, team.id)
+                      }
+                    >
                       Remove
                     </Button>
                   ) : (
                     team.projectmanagerusername == user.username && (
-                      <Button variant="destructive" size="sm">
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() =>
+                          handleClickToLeave(team.projectmanageruserid, team.id)
+                        }
+                      >
                         Leave
                       </Button>
                     )

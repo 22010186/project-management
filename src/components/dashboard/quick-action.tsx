@@ -68,6 +68,7 @@ export function QuickActions() {
       await createProject(data, user?.teamid);
       toast("Success", { description: "Team created" });
       queryClient.invalidateQueries({ queryKey: ["user-data"] });
+      queryClient.invalidateQueries({ queryKey: ["allProjects"] });
     }
     setOpen(false);
   };
