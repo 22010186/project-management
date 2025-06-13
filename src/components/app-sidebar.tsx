@@ -96,7 +96,7 @@ export function AppSidebar() {
                 </Button>
               </CollapsibleTrigger>
               <CollapsibleContent>
-                <SidebarMenuSub>
+                <SidebarMenuSub className="[&>div]:bg-red-500">
                   <SidebarMenuSubItem />
                   <SidebarLink
                     icon={Home}
@@ -232,8 +232,8 @@ const SidebarLink = ({ href, icon: Icon, label, id }: SidebarLinkProps) => {
   return (
     <Link href={href} className="w-full">
       <SidebarMenuSubItem
-        className={`relative flex cursor-pointer justify-start px-4 py-2 items-center gap-3 transition-colors hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
-          isActive ? "bg-gray-100 text-white dark:bg-gray-600 font-bold" : ""
+        className={`relative flex cursor-pointer justify-start px-4 py-2 items-center gap-3 transition-colors hover:bg-gray-100  dark:hover:bg-gray-700 ${
+          isActive ? "bg-gray-100 text-white dark:bg-gray-800 font-bold" : ""
         }`}
       >
         {isActive && (

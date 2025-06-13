@@ -54,7 +54,7 @@ export interface Data {
 }
 
 type StateUser = {
-  dataUser: UserType;
+  dataUser?: UserType;
   isOwner?: boolean;
 };
 type ActionUser = {
@@ -85,7 +85,7 @@ const useIsLogin = create<StateLogin & ActionLogin>((set) => ({
 }));
 
 const useStateUser = create<StateUser & ActionUser>((set) => ({
-  dataUser: {} as UserType,
+  dataUser: undefined,
   isOwner: false,
   setDataUser: (data: UserType) => set((state) => ({ dataUser: data })),
   setOwner: (data: boolean) => set((state) => ({ isOwner: data })),

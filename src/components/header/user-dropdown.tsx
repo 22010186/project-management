@@ -18,7 +18,7 @@ export function UserDropdown() {
 
   async function handleLogout() {
     await logout();
-    setDataUser(null);
+    setDataUser(undefined);
     router.push("/auth");
   }
 
