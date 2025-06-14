@@ -158,11 +158,11 @@ export function RegisterForm({
               </div>
             </div>
           </form>
-          <div className="relative hidden bg-muted lg:block">
+          <div className="relative hidden bg-muted lg:block mr-8 box-border">
             <img
               src="https://picsum.photos/200/300?random=1"
               alt="Image"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0  h-full w-full object-cover rounded-r-lg"
             />
           </div>
         </CardContent>

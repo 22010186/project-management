@@ -14,6 +14,7 @@ import { UserDropdown } from "./user-dropdown";
 import { SidebarTrigger } from "../ui/sidebar";
 import { getUserData } from "@/lib/supabase/api/auth";
 import { useQuery } from "@tanstack/react-query";
+import LanguageToggle from "../language";
 
 interface HeaderProps {
   className?: string;
@@ -82,6 +83,9 @@ export const NavBar = ({ className }: HeaderProps) => {
           )}
           <div className="border-l pl-4 dark:border-gray-800">
             <ThemeToggle />
+          </div>
+          <div className="border-l pl-4 dark:border-gray-800 hidden sm:block">
+            <LanguageToggle align="end" />
           </div>
         </div>
       </div>

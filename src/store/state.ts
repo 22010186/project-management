@@ -70,13 +70,13 @@ type StateProjectName = {
 type ActionProjectName = {
   setName: (data: string) => void;
   setId: (id: number) => void;
-  setProjects: (data: Project[]) => void;
+  setProjects: (data?: Project[]) => void;
 };
 type StateAllTasks = {
-  tasks: Task[];
+  tasks?: Task[];
 };
 type ActionAllTasks = {
-  setTasks: (tasks: Task[]) => void;
+  setTasks: (tasks?: Task[]) => void;
 };
 
 const useIsLogin = create<StateLogin & ActionLogin>((set) => ({
@@ -94,16 +94,16 @@ const useStateUser = create<StateUser & ActionUser>((set) => ({
 const useStateProject = create<StateProjectName & ActionProjectName>((set) => ({
   id: 0,
   name: "",
-  projects: [],
+  projects: undefined,
   setName: (name: string) => set((state) => ({ name: name })),
   setId: (id: number) => set((state) => ({ id: id })),
-  setProjects: (projects: Project[]) =>
+  setProjects: (projects?: Project[]) =>
     set((state) => ({ projects: projects })),
 }));
 
 const useStateAllTask = create<StateAllTasks & ActionAllTasks>((set) => ({
-  tasks: [] as Task[],
-  setTasks: (tasks: Task[]) => set((state) => ({ tasks: tasks })),
+  tasks: undefined,
+  setTasks: (tasks?: Task[]) => set((state) => ({ tasks: tasks })),
 }));
 
 export { useIsLogin, useStateUser, useStateProject, useStateAllTask };

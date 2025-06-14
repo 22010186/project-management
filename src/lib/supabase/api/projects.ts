@@ -46,7 +46,7 @@ export const getAllProjects = async (teamid?: number) => {
         return data;
       })
     );
-    if (!projects.length) return [];
+    if (!projects?.length) return [];
 
     return projects as Project[];
   } catch (error: any) {

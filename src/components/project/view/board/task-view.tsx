@@ -104,9 +104,9 @@ const Task = ({ task }: TaskProps) => {
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <button className="flex h-6 w-4 flex-shrink-0 items-center justify-center dark:text-neutral-500">
+              <div className="flex h-6 w-4 flex-shrink-0 items-center justify-center dark:text-neutral-500">
                 <EllipsisVertical size={20} className="cursor-pointer" />
-              </button>
+              </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent side="left">
               <DropdownMenuLabel>

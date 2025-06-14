@@ -8,17 +8,25 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useStateUser } from "@/store/state";
+import { useStateAllTask, useStateProject, useStateUser } from "@/store/state";
 import { logout } from "@/lib/supabase/api/actions";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 export function UserDropdown() {
   const { dataUser, setDataUser } = useStateUser();
+  const { setTasks } = useStateAllTask();
+  const { setProjects } = useStateProject();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   async function handleLogout() {
     await logout();
     setDataUser(undefined);
+    setProjects(undefined);
+    setTasks(undefined);
+
+    queryClient.clear();
     router.push("/auth");
   }
 

@@ -42,6 +42,7 @@ import { getAllProjects } from "@/lib/supabase/api/projects";
 import { useStateProject, useStateUser } from "@/store/state";
 import { Loading } from "./loading";
 import { Project } from "@/store/type";
+import LanguageToggle from "./language";
 
 export function AppSidebar() {
   const { dataUser: user } = useStateUser();
@@ -80,6 +81,10 @@ export function AppSidebar() {
               <span className="text-sm">Private</span>
             </span>
           )}
+        </div>
+
+        <div className="flex items-center justify-center border-t-0 border-y-[1.5px] border-gray-200 dark:border-gray-700 pt-2 pb-3 sm:hidden">
+          <LanguageToggle align="start" />
         </div>
       </SidebarHeader>
       <SidebarContent className="no-scroll">

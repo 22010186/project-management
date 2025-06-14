@@ -1,42 +1,10 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, User } from "lucide-react";
 import { Task } from "@/store/type";
-
-const recentTasks = [
-  {
-    id: 1,
-    title: "Design system updates",
-    assignee: "John Doe",
-    dueDate: "2024-06-12",
-    status: "in-progress",
-    priority: "high",
-  },
-  {
-    id: 2,
-    title: "API integration testing",
-    assignee: "Jane Smith",
-    dueDate: "2024-06-14",
-    status: "todo",
-    priority: "medium",
-  },
-  {
-    id: 3,
-    title: "User feedback analysis",
-    assignee: "Mike Johnson",
-    dueDate: "2024-06-10",
-    status: "completed",
-    priority: "low",
-  },
-  {
-    id: 4,
-    title: "Mobile app optimization",
-    assignee: "Sarah Wilson",
-    dueDate: "2024-06-16",
-    status: "todo",
-    priority: "high",
-  },
-];
+import { useRouter } from "next/navigation";
 
 const getStatusColor = (status?: string) => {
   switch (status) {
@@ -71,17 +39,20 @@ type RecentTaskProps = {
 };
 
 export function RecentTasks({ tasks }: RecentTaskProps) {
+  const router = useRouter();
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Recent Tasks</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-4 max-h-72 overflow-y-auto no-scroll">
           {tasks.map((task) => (
             <div
               key={task.id}
-              className="flex items-center justify-between p-3 border border-border rounded-lg"
+              onClick={() => router.push(`/project/${task.projectid}`)}
+              className="flex items-center justify-between cursor-pointer p-3 border border-border rounded-lg"
             >
               <div className="space-y-1">
                 <h4 className="font-medium">{task.title}</h4>
