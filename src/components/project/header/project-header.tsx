@@ -58,6 +58,7 @@ const ProjectHeader = ({ title, activeTab, setActiveTab }: Props) => {
             <Grid3X3 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 z-10" />
             <Input
               type="text"
+              disabled={true}
               placeholder="Search Task"
               className="pl-10 pr-3 py-2 text-md w-full focus:ring-0 focus:outline-none focus:shadow-none " // Add additional styling as needed
             />
