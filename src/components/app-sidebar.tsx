@@ -111,7 +111,7 @@ export function AppSidebar() {
                   <SidebarLink
                     icon={Briefcase}
                     label="Timeline"
-                    href="/timeline"
+                    href="#"
                   />
                   <SidebarLink icon={Search} label="Search" href="/search" />
                   <SidebarLink
