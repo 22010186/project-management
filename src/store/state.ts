@@ -27,6 +27,8 @@ export interface UserType {
   userid?: number;
   username?: string;
   teamid?: number;
+  profilepictureurl?: string;
+  cognitoid?: string;
 }
 
 export interface AppMetadata {

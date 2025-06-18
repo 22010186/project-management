@@ -51,6 +51,7 @@ export interface Task {
   projectid: number;
   authoruserid?: number;
   assigneduserid?: number;
+  image?: string;
 
   author?: User;
   assignee?: User;

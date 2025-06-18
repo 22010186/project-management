@@ -13,12 +13,14 @@ export const getUserData = async () => {
   const userid = (userData as User[])[0].userid;
   const username = (userData as User[])[0].username;
   const teamid = (userData as User[])[0].teamid;
+  const profilepictureurl = (userData as User[])[0].profilepictureurl;
 
   return {
     ...data.user,
     username,
     userid,
     teamid,
+    profilepictureurl,
   };
 };
 

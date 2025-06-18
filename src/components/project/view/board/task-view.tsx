@@ -23,6 +23,7 @@ type TaskProps = {
 };
 
 const Task = ({ task }: TaskProps) => {
+  const bucketPath = process.env.NEXT_PUBLIC_SUPABASE_BUCKET_URL;
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "task",
     item: { id: task.id },
@@ -79,10 +80,10 @@ const Task = ({ task }: TaskProps) => {
         isDragging ? "opacity-50 scale-[96%]" : "opacity-100"
       }`}
     >
-      {task.attachments && task.attachments.length > 0 && (
-        <Image
-          src={`/${task.attachments[0].fileurl}`}
-          alt={task.attachments[0].filename}
+      {task?.image && (
+        <img
+          src={`${bucketPath}/${task.image}`}
+          alt={task.image}
           className="h-auto w-full rounded-t-md"
         />
       )}

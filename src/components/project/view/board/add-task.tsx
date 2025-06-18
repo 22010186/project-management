@@ -24,12 +24,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Priority, Status } from "@/store/type";
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { createTask } from "@/lib/supabase/api/tasks";
 import { useStateProject, useStateUser } from "@/store/state";
 import { useQueryClient } from "@tanstack/react-query";
+import { uploadImage } from "@/lib/supabase/api/storage";
 
 type Inputs = {
   title: string;
@@ -43,6 +44,7 @@ type Inputs = {
   duedate: string;
   authoruserid: number;
   projectid: number;
+  image?: string;
 };
 
 type Props = {
@@ -55,6 +57,14 @@ const AddTask = ({ status }: Props) => {
   const [open, setOpen] = useState(false);
   const { dataUser } = useStateUser();
   const { id } = useStateProject();
+  const [image, setImage] = useState<File | null>(null);
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(file);
+    }
+  };
 
   const queryClient = useQueryClient();
 
@@ -67,6 +77,10 @@ const AddTask = ({ status }: Props) => {
     } else {
       data.points = undefined;
     }
+    if (image) {
+      const fullPath = await uploadImage(image);
+      data.image = fullPath;
+    }
     await createTask(data);
     queryClient.invalidateQueries({ queryKey: ["task-all-project"] });
     toast("Success", { description: "Task created" });
@@ -76,6 +90,7 @@ const AddTask = ({ status }: Props) => {
   function handleOpenDialog() {
     setOpen(!open);
     setValue("status", status as Status);
+    if (!open) setImage(null);
   }
 
   return (
@@ -194,6 +209,15 @@ const AddTask = ({ status }: Props) => {
                 required
                 type="number"
                 {...register("assigneduserid")}
+              />
+            </div>
+            <div className="grid gap-3 w-full">
+              <Label htmlFor="image">Image</Label>
+              <Input
+                id="image"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
               />
             </div>
           </div>
