@@ -113,7 +113,7 @@ export function AppSidebar() {
                     label="Timeline"
                     href="#"
                   />
-                  <SidebarLink icon={Search} label="Search" href="/#" />
+                  <SidebarLink icon={Search} label="Search" href="#" />
                   <SidebarLink
                     icon={Settings}
                     label="Settings"
