@@ -37,6 +37,7 @@ export default function UsersPage() {
           <TableRow>
             <TableHead className="w-[100px]">Index</TableHead>
             <TableHead>Name</TableHead>
+            <TableHead>ID</TableHead>
             <TableHead>Cognitoid</TableHead>
             <TableHead>Avatar</TableHead>
             <TableHead className="text-right">Team ID</TableHead>
@@ -47,6 +48,7 @@ export default function UsersPage() {
             <TableRow key={user.userid}>
               <TableCell className="font-medium">{index + 1}</TableCell>
               <TableCell>{user.username}</TableCell>
+              <TableCell>{user?.userid}</TableCell>
               <TableCell>{user.cognitoid}</TableCell>
               <TableCell>
                 <Avatar className="size-12 border">

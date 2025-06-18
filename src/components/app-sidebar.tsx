@@ -41,14 +41,22 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllProjects } from "@/lib/supabase/api/projects";
 import { useStateProject, useStateUser } from "@/store/state";
 import { Loading } from "./loading";
+import { Project } from "@/store/type";
+import LanguageToggle from "./language";
 
 export function AppSidebar() {
   const { dataUser: user } = useStateUser();
+  const { setProjects } = useStateProject();
   const pathname = usePathname();
 
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["allProjects"],
-    queryFn: getAllProjects,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["projects"],
+    queryFn: async () => {
+      const data = await getAllProjects(user?.teamid);
+      setProjects(data as Project[]);
+      return data;
+    },
+    enabled: !!user?.teamid,
     staleTime: 1000 * 60 * 5,
   });
 
@@ -59,7 +67,9 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader>
         <div className="z-70 flex min-h-14 w-full items-center justify-center px-6">
-          <span className="font-extrabold font-mono text-lg">Welcome</span>
+          <span className="font-extrabold font-mono text-lg">
+            Welcome {user?.username}
+          </span>
         </div>
 
         {/* Team */}
@@ -71,6 +81,10 @@ export function AppSidebar() {
               <span className="text-sm">Private</span>
             </span>
           )}
+        </div>
+
+        <div className="flex items-center justify-center border-t-0 border-y-[1.5px] border-gray-200 dark:border-gray-700 pt-2 pb-3 sm:hidden">
+          <LanguageToggle align="start" />
         </div>
       </SidebarHeader>
       <SidebarContent className="no-scroll">
@@ -87,7 +101,7 @@ export function AppSidebar() {
                 </Button>
               </CollapsibleTrigger>
               <CollapsibleContent>
-                <SidebarMenuSub>
+                <SidebarMenuSub className="[&>div]:bg-red-500">
                   <SidebarMenuSubItem />
                   <SidebarLink
                     icon={Home}
@@ -97,7 +111,7 @@ export function AppSidebar() {
                   <SidebarLink
                     icon={Briefcase}
                     label="Timeline"
-                    href="/timeline"
+                    href="#"
                   />
                   <SidebarLink icon={Search} label="Search" href="/search" />
                   <SidebarLink
@@ -129,15 +143,18 @@ export function AppSidebar() {
               <CollapsibleContent>
                 <SidebarMenuSub>
                   {data &&
-                    data.map((project) => (
-                      <SidebarLink
-                        key={project.id}
-                        icon={Briefcase}
-                        label={project.name}
-                        id={project.id}
-                        href={`/project/${project.id}`}
-                      />
-                    ))}
+                    data.map(
+                      (project) =>
+                        project && (
+                          <SidebarLink
+                            key={project.id}
+                            icon={Briefcase}
+                            label={project.name}
+                            id={project.id}
+                            href={`/project/${project.id}`}
+                          />
+                        )
+                    )}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
@@ -220,8 +237,8 @@ const SidebarLink = ({ href, icon: Icon, label, id }: SidebarLinkProps) => {
   return (
     <Link href={href} className="w-full">
       <SidebarMenuSubItem
-        className={`relative flex cursor-pointer justify-start px-4 py-2 items-center gap-3 transition-colors hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
-          isActive ? "bg-gray-100 text-white dark:bg-gray-600 font-bold" : ""
+        className={`relative flex cursor-pointer justify-start px-4 py-2 items-center gap-3 transition-colors hover:bg-gray-100  dark:hover:bg-gray-700 ${
+          isActive ? "bg-gray-100 text-white dark:bg-gray-800 font-bold" : ""
         }`}
       >
         {isActive && (

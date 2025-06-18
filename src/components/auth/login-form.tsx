@@ -41,6 +41,7 @@ export function LoginForm({
       description: "Login successful",
     });
 
+    queryClient.invalidateQueries({ queryKey: ["user-data"] });
     queryClient.invalidateQueries({ queryKey: ["allProjects"] });
     router.push("/dashboard");
   };
@@ -132,11 +133,11 @@ export function LoginForm({
               </div>
             </div>
           </form>
-          <div className="relative hidden bg-muted lg:block">
+          <div className="relative hidden bg-muted lg:block mr-8 box-border">
             <img
-              src="https://placehold.co/400x600"
+              src="https://picsum.photos/200/300?random=1"
               alt="Image"
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+              className="absolute inset-0  h-full w-full object-cover rounded-r-lg"
             />
           </div>
         </CardContent>

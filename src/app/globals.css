@@ -140,14 +140,20 @@
   }
 } */
 
+/* width */
 .no-scroll::-webkit-scrollbar {
-  width: 0px;
+  width: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
 }
 
 /* From Uiverse.io by cosnametv */
 .loader {
-  --color: #a5a5b0;
-  --size: 70px;
+  --color: #155dfc;
+  --size: 60px;
   width: var(--size);
   height: var(--size);
   display: grid;

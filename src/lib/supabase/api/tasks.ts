@@ -1,4 +1,4 @@
-import { Task } from "@/store/type";
+import { Project, Task } from "@/store/type";
 import { createClient } from "../client";
 
 export const getTaskByProjectId = async (projectid: string) => {
@@ -8,6 +8,18 @@ export const getTaskByProjectId = async (projectid: string) => {
     .order("duedate", { ascending: true })
     .eq("projectid", projectid);
   if (data) return data as Task[];
+};
+
+export const getTasksByProjects = async (projects: Project[]) => {
+  const projectIds = projects.map((project) => project.id);
+
+  const { data, error } = await createClient()
+    .from("task")
+    .select()
+    .order("duedate", { ascending: false })
+    .in("projectid", projectIds);
+
+  return data as Task[];
 };
 
 export const getTaskByUserId = async (userid: string) => {
@@ -38,4 +50,12 @@ export const updateTaskStatus = async (taskId: string, status: string) => {
   if (data) {
     return data as Task[];
   }
+};
+
+export const deleteTask = async (taskId: number) => {
+  const { data, error } = await createClient()
+    .from("task")
+    .delete()
+    .eq("id", taskId);
+  if (error) throw error;
 };

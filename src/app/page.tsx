@@ -14,8 +14,8 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-[80vh] p-8 pb-0 font-[family-name:var(--font-geist-sans)]">
-      {dataUser && !dataUser.email_confirmed_at ? (
+    <div className="flex items-center justify-center min-h-[80vh] pt-8 font-[family-name:var(--font-geist-sans)]">
+      {dataUser && !dataUser?.email_confirmed_at ? (
         <ConfirmEmail />
       ) : (
         <LandingPage />

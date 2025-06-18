@@ -12,7 +12,7 @@ export default function DashBoardWrapper({
       <div className="flex w-full min-h-screen">
         <AppSidebar />
 
-        <main className="flex w-full flex-col min-w-lg">
+        <main className="flex w-full flex-col min-w-md">
           <NavBar />
 
           <div className="p-4 xl:p-6 w-full">{children}</div>

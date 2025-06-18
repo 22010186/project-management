@@ -51,6 +51,7 @@ export interface Task {
   projectid: number;
   authoruserid?: number;
   assigneduserid?: number;
+  image?: string;
 
   author?: User;
   assignee?: User;
@@ -65,8 +66,14 @@ export interface SearchResults {
 }
 
 export interface Team {
-  teamid: number;
+  id: number;
   teamname: string;
   productowneruserid?: number;
   projectmanageruserid?: number;
+}
+
+export interface ProjectTeam {
+  id: number;
+  teamid: number;
+  projectid: number;
 }

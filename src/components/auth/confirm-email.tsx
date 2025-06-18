@@ -21,7 +21,7 @@ export default function ConfirmEmail() {
           <Button
             className="w-full"
             variant="outline"
-            onClick={() => router.push("/auth/login")}
+            onClick={() => router.push("/auth")}
           >
             Go to login
           </Button>
