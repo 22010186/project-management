@@ -28,6 +28,7 @@ export interface User {
   profilepictureurl?: string;
   cognitoid?: string;
   teamid?: number;
+  isOnline?: boolean;
 }
 
 export interface Attachment {
@@ -76,4 +77,25 @@ export interface ProjectTeam {
   id: number;
   teamid: number;
   projectid: number;
+}
+
+export interface Message {
+  id: string;
+  text: string;
+  sender: User;
+  timestamp: Date;
+  isOwn: boolean;
+}
+
+export interface ChatRoom {
+  id: number;
+  name: string;
+  participants: {
+    total: number;
+    online: number;
+  };
+  lastMessage?: Message;
+  unreadCount: number;
+  isGroup: boolean;
+  avatar?: string;
 }
