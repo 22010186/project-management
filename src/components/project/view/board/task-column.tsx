@@ -48,6 +48,9 @@ const TaskColumn = ({
           queryClient.invalidateQueries({
             queryKey: [`task-project-${projectId}`],
           });
+          queryClient.invalidateQueries({
+            queryKey: [`task-all-project`],
+          });
         }
       )
       .subscribe((status) => {
@@ -88,9 +91,8 @@ const TaskColumn = ({
           </h3>
           <div className="flex items-center gap-1">
             <div className="flex h-6 w-5 items-center justify-center dark:text-neutral-500">
-              <EllipsisVertical size={26} className="cursor-pointer" />
+              <AddTask status={status} />
             </div>
-            <AddTask status={status} />
           </div>
         </div>
       </div>

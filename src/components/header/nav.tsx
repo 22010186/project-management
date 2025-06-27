@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import { ThemeToggle } from "./theme-toogle";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -13,6 +13,8 @@ import { useIsLogin, useStateUser } from "@/store/state";
 import { UserDropdown } from "./user-dropdown";
 import { SidebarTrigger } from "../ui/sidebar";
 import { getUserData } from "@/lib/supabase/api/auth";
+import { useQuery } from "@tanstack/react-query";
+import LanguageToggle from "../language";
 
 interface HeaderProps {
   className?: string;
@@ -20,17 +22,18 @@ interface HeaderProps {
 
 export const NavBar = ({ className }: HeaderProps) => {
   const pathname = usePathname();
-  const isLandingPage = pathname === "/";
+  const isLandingPage = useMemo(() => pathname === "/", [pathname]);
   const { dataUser: user, setDataUser } = useStateUser();
   const { changeAction } = useIsLogin();
 
-  useEffect(() => {
-    async function fetchUser() {
+  const query = useQuery({
+    queryKey: ["user-data"],
+    queryFn: async () => {
       const data = await getUserData();
-      if (data) setDataUser(data);
-    }
-    fetchUser();
-  }, []);
+      setDataUser(data);
+      return data;
+    },
+  });
 
   return (
     <header
@@ -62,7 +65,7 @@ export const NavBar = ({ className }: HeaderProps) => {
         </div>
 
         <div className="flex items-center gap-4">
-          {user ? (
+          {user?.userid ? (
             <UserDropdown />
           ) : (
             <div className="flex items-center gap-3">
@@ -80,6 +83,9 @@ export const NavBar = ({ className }: HeaderProps) => {
           )}
           <div className="border-l pl-4 dark:border-gray-800">
             <ThemeToggle />
+          </div>
+          <div className="border-l pl-4 dark:border-gray-800 hidden sm:block">
+            <LanguageToggle align="end" />
           </div>
         </div>
       </div>

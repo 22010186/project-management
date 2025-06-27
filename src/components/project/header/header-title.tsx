@@ -11,10 +11,14 @@ import {
 import { Label } from "../../ui/label";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
-import { Plus } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useStateUser } from "@/store/state";
+import { usePathname, useRouter } from "next/navigation";
+import { deleteProject } from "@/lib/supabase/api/projects";
+import { useQueryClient } from "@tanstack/react-query";
 
 type HeaderTitleProps = {
   name: string;
@@ -22,18 +26,17 @@ type HeaderTitleProps = {
   button: boolean;
 };
 
-type Inputs = {
-  projectName: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-};
 const HeaderTitle = ({ name, isSmallText, button }: HeaderTitleProps) => {
-  const { register, handleSubmit } = useForm<Inputs>();
-  const [open, setOpen] = useState(false);
-  const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
-    toast("Success", { description: "Project created" });
-    setOpen(false);
+  const pathname = usePathname();
+  const { isOwner } = useStateUser();
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  const handleDeleteProject = async (projectid: number) => {
+    await deleteProject(projectid);
+    queryClient.invalidateQueries({ queryKey: ["projects"] });
+    toast("Success", { description: "Project deleted" });
+    router.push("/dashboard");
   };
 
   return (
@@ -44,65 +47,14 @@ const HeaderTitle = ({ name, isSmallText, button }: HeaderTitleProps) => {
         {name}
       </h1>
       {button && (
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
-            <Button className="ml-full">
-              <Plus size={20} /> New Board
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <form onSubmit={handleSubmit(handleOnSubmit)}>
-              <DialogHeader>
-                <DialogTitle>Create New Project</DialogTitle>
-                <DialogDescription>
-                  Make changes to input fields here. Click save when you&apos;re
-                  done.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4">
-                <div className="grid gap-3">
-                  <Label htmlFor="project-name">Project Name</Label>
-                  <Input
-                    id="project-name"
-                    placeholder="New Project"
-                    required
-                    {...register("projectName")}
-                  />
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="description">Description</Label>
-                  <Input id="description" {...register("description")} />
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="start-date">Start Date</Label>
-                  <Input
-                    id="start-date"
-                    type="date"
-                    required
-                    placeholder="mm/dd/yyyy"
-                    {...register("startDate")}
-                  />
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="end-date">End Date</Label>
-                  <Input
-                    id="end-date"
-                    type="date"
-                    required
-                    placeholder="mm/dd/yyyy"
-                    {...register("endDate")}
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogClose>
-                <Button type="submit">Save Project</Button>
-              </DialogFooter>
-            </form>
-          </DialogContent>
-        </Dialog>
+        <Button
+          disabled={!isOwner}
+          variant={"destructive"}
+          onClick={() => handleDeleteProject(Number(pathname.split("/")[2]))}
+          className="ml-full"
+        >
+          <LogOut size={20} /> Delete Project
+        </Button>
       )}
     </div>
   );

@@ -1,12 +1,5 @@
 import { create } from "zustand";
-
-type State = {
-  openSidebar: boolean;
-};
-type Actions = {
-  open: () => void;
-  close: () => void;
-};
+import { Project, Task } from "./type";
 
 type StateLogin = {
   isLogin: boolean;
@@ -33,6 +26,9 @@ export interface UserType {
   is_anonymous: boolean;
   userid?: number;
   username?: string;
+  teamid?: number;
+  profilepictureurl?: string;
+  cognitoid?: string;
 }
 
 export interface AppMetadata {
@@ -60,26 +56,37 @@ export interface Data {
 }
 
 type StateUser = {
-  dataUser: UserType;
+  dataUser?: UserType;
+  isOwner?: boolean;
 };
 type ActionUser = {
   setDataUser: (data: any) => void;
+  setOwner: (data: boolean) => void;
 };
 
 type StateProjectName = {
   name: string;
   id: number;
+  projects?: Project[];
 };
 type ActionProjectName = {
   setName: (data: string) => void;
   setId: (id: number) => void;
+  setProjects: (data?: Project[]) => void;
 };
-
-const useSidebar = create<State & Actions>((set) => ({
-  openSidebar: true,
-  open: () => set((state) => ({ openSidebar: true })),
-  close: () => set((state) => ({ openSidebar: false })),
-}));
+type StateMessage = {
+  messages: CometChat.BaseMessage[];
+};
+type ActionMessage = {
+  setMessages: (messages: CometChat.BaseMessage[]) => void;
+  addMessage: (message: CometChat.BaseMessage) => void;
+};
+type StateAllTasks = {
+  tasks?: Task[];
+};
+type ActionAllTasks = {
+  setTasks: (tasks?: Task[]) => void;
+};
 
 const useIsLogin = create<StateLogin & ActionLogin>((set) => ({
   isLogin: true,
@@ -87,15 +94,39 @@ const useIsLogin = create<StateLogin & ActionLogin>((set) => ({
 }));
 
 const useStateUser = create<StateUser & ActionUser>((set) => ({
-  dataUser: {} as UserType,
+  dataUser: undefined,
+  isOwner: false,
   setDataUser: (data: UserType) => set((state) => ({ dataUser: data })),
+  setOwner: (data: boolean) => set((state) => ({ isOwner: data })),
 }));
 
 const useStateProject = create<StateProjectName & ActionProjectName>((set) => ({
   id: 0,
   name: "",
+  projects: undefined,
   setName: (name: string) => set((state) => ({ name: name })),
   setId: (id: number) => set((state) => ({ id: id })),
+  setProjects: (projects?: Project[]) =>
+    set((state) => ({ projects: projects })),
 }));
 
-export { useSidebar, useIsLogin, useStateUser, useStateProject };
+const useStateAllTask = create<StateAllTasks & ActionAllTasks>((set) => ({
+  tasks: undefined,
+  setTasks: (tasks?: Task[]) => set((state) => ({ tasks: tasks })),
+}));
+
+const useStateMessage = create<StateMessage & ActionMessage>((set) => ({
+  messages: [],
+  setMessages: (messages: CometChat.BaseMessage[]) =>
+    set((state) => ({ messages: messages })),
+  addMessage: (message: CometChat.BaseMessage) =>
+    set((state) => ({ messages: [...state.messages, message] })),
+}));
+
+export {
+  useIsLogin,
+  useStateUser,
+  useStateProject,
+  useStateAllTask,
+  useStateMessage,
+};
