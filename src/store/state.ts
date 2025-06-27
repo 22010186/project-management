@@ -74,6 +74,13 @@ type ActionProjectName = {
   setId: (id: number) => void;
   setProjects: (data?: Project[]) => void;
 };
+type StateMessage = {
+  messages: CometChat.BaseMessage[];
+};
+type ActionMessage = {
+  setMessages: (messages: CometChat.BaseMessage[]) => void;
+  addMessage: (message: CometChat.BaseMessage) => void;
+};
 type StateAllTasks = {
   tasks?: Task[];
 };
@@ -108,4 +115,18 @@ const useStateAllTask = create<StateAllTasks & ActionAllTasks>((set) => ({
   setTasks: (tasks?: Task[]) => set((state) => ({ tasks: tasks })),
 }));
 
-export { useIsLogin, useStateUser, useStateProject, useStateAllTask };
+const useStateMessage = create<StateMessage & ActionMessage>((set) => ({
+  messages: [],
+  setMessages: (messages: CometChat.BaseMessage[]) =>
+    set((state) => ({ messages: messages })),
+  addMessage: (message: CometChat.BaseMessage) =>
+    set((state) => ({ messages: [...state.messages, message] })),
+}));
+
+export {
+  useIsLogin,
+  useStateUser,
+  useStateProject,
+  useStateAllTask,
+  useStateMessage,
+};
