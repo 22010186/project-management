@@ -14,6 +14,7 @@ export const fetchGroupCounters = async (
 
   return {
     total: group?.getMembersCount() ?? 0,
+    // @ts-ignore
     online: onlineObj[groupId] ?? 0,
   };
 };
