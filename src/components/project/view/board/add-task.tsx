@@ -31,6 +31,7 @@ import { createTask } from "@/lib/supabase/api/tasks";
 import { useStateProject, useStateUser } from "@/store/state";
 import { useQueryClient } from "@tanstack/react-query";
 import { uploadImage } from "@/lib/supabase/api/storage";
+import { useTranslation } from "react-i18next";
 
 type Inputs = {
   title: string;
@@ -53,6 +54,7 @@ type Props = {
 
 const AddTask = ({ status }: Props) => {
   const { register, handleSubmit, setValue } = useForm<Inputs>();
+  const { t } = useTranslation();
 
   const [open, setOpen] = useState(false);
   const { dataUser } = useStateUser();
@@ -103,11 +105,13 @@ const AddTask = ({ status }: Props) => {
       <DialogContent className="sm:max-w-md">
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <DialogHeader>
-            <DialogTitle>Create New Task</DialogTitle>
+            <DialogTitle>{t("page.project.dialog.title")}</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 my-8">
             <div className="grid gap-3">
-              <Label htmlFor="task-title">Task Title</Label>
+              <Label htmlFor="task-title">
+                {t("page.project.dialog.form.task_title")}
+              </Label>
               <Input
                 id="task-title"
                 placeholder="New Project"
@@ -116,12 +120,16 @@ const AddTask = ({ status }: Props) => {
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="description">Description</Label>
+              <Label htmlFor="description">
+                {t("page.project.dialog.form.description")}
+              </Label>
               <Input id="description" required {...register("description")} />
             </div>
             <div className="flex gap-3 justify-between">
               <div className="grid gap-3 w-full">
-                <Label htmlFor="status">Status</Label>
+                <Label htmlFor="status">
+                  {t("page.project.dialog.form.status.title")}
+                </Label>
                 <Select
                   required
                   defaultValue={status}
@@ -132,18 +140,30 @@ const AddTask = ({ status }: Props) => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectItem value="To Do">To Do</SelectItem>
-                      <SelectItem value="Work In Progress">
-                        Work In Progress
+                      <SelectItem value="To Do">
+                        {t("page.project.dialog.form.status.option.todo")}
                       </SelectItem>
-                      <SelectItem value="Under Review">Under Review</SelectItem>
-                      <SelectItem value="Completed">Completed</SelectItem>
+                      <SelectItem value="Work In Progress">
+                        {t(
+                          "page.project.dialog.form.status.option.work_in_progress"
+                        )}
+                      </SelectItem>
+                      <SelectItem value="Under Review">
+                        {t(
+                          "page.project.dialog.form.status.option.under_review"
+                        )}
+                      </SelectItem>
+                      <SelectItem value="Completed">
+                        {t("page.project.dialog.form.status.option.completed")}
+                      </SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
               <div className="grid gap-3 w-full">
-                <Label htmlFor="status">Priority</Label>
+                <Label htmlFor="status">
+                  {t("page.project.dialog.form.priority.title")}
+                </Label>
                 <Select
                   onValueChange={(val) => setValue("priority", val as Priority)}
                 >
@@ -152,11 +172,21 @@ const AddTask = ({ status }: Props) => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup defaultValue={status}>
-                      <SelectItem value="Urgent">Urgent</SelectItem>
-                      <SelectItem value="Hight">Hight</SelectItem>
-                      <SelectItem value="Medium">Medium</SelectItem>
-                      <SelectItem value="Low">Low</SelectItem>
-                      <SelectItem value="Backlog">Backlog</SelectItem>
+                      <SelectItem value="Urgent">
+                        {t("page.project.dialog.form.priority.option.urgent")}
+                      </SelectItem>
+                      <SelectItem value="High">
+                        {t("page.project.dialog.form.priority.option.high")}
+                      </SelectItem>
+                      <SelectItem value="Medium">
+                        {t("page.project.dialog.form.priority.option.medium")}
+                      </SelectItem>
+                      <SelectItem value="Low">
+                        {t("page.project.dialog.form.priority.option.low")}
+                      </SelectItem>
+                      <SelectItem value="Backlog">
+                        {t("page.project.dialog.form.priority.option.backlog")}
+                      </SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -164,7 +194,9 @@ const AddTask = ({ status }: Props) => {
             </div>
             <div className="flex gap-3 justify-between">
               <div className="grid gap-3 w-full">
-                <Label htmlFor="end-date">Start Date</Label>
+                <Label htmlFor="end-date">
+                  {t("page.project.dialog.form.start_date")}
+                </Label>
                 <Input
                   id="end-date"
                   type="date"
@@ -174,7 +206,9 @@ const AddTask = ({ status }: Props) => {
                 />
               </div>
               <div className="grid gap-3 w-full">
-                <Label htmlFor="end-date">Due Date</Label>
+                <Label htmlFor="end-date">
+                  {t("page.project.dialog.form.due_date")}
+                </Label>
                 <Input
                   id="end-date"
                   type="date"
@@ -185,7 +219,9 @@ const AddTask = ({ status }: Props) => {
               </div>
             </div>
             <div className="grid gap-3 w-full">
-              <Label htmlFor="points">Points</Label>
+              <Label htmlFor="points">
+                {t("page.project.dialog.form.points")}
+              </Label>
               <Input
                 id="points"
                 type="number"
@@ -194,7 +230,9 @@ const AddTask = ({ status }: Props) => {
               />
             </div>
             <div className="grid gap-3 w-full">
-              <Label htmlFor="points">Tags</Label>
+              <Label htmlFor="points">
+                {t("page.project.dialog.form.tags")}
+              </Label>
               <Input
                 id="points"
                 type="text"
@@ -203,7 +241,9 @@ const AddTask = ({ status }: Props) => {
               />
             </div>
             <div className="grid gap-3 w-full">
-              <Label htmlFor="assigneduserid">Assigned User Id</Label>
+              <Label htmlFor="assigneduserid">
+                {t("page.project.dialog.form.assigned_user_id")}
+              </Label>
               <Input
                 id="assigneduserid"
                 required
@@ -212,7 +252,9 @@ const AddTask = ({ status }: Props) => {
               />
             </div>
             <div className="grid gap-3 w-full">
-              <Label htmlFor="image">Image</Label>
+              <Label htmlFor="image">
+                {t("page.project.dialog.form.image")}
+              </Label>
               <Input
                 id="image"
                 type="file"
@@ -224,10 +266,12 @@ const AddTask = ({ status }: Props) => {
           <DialogFooter className="mt-3 flex justify-end">
             <DialogClose asChild>
               <Button type="button" variant="secondary">
-                Close
+                {t("page.project.dialog.form.button.1")}
               </Button>
             </DialogClose>
-            <Button type="submit">Save</Button>
+            <Button type="submit">
+              {t("page.project.dialog.form.button.2")}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

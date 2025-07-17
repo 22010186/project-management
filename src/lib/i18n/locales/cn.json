@@ -1,0 +1,325 @@
+{
+  "search": "搜索",
+  "nav": {
+    "signin": "登录",
+    "get_started": "开始使用",
+    "dropdown": {
+      "title": "登录方式",
+      "setting": "设置",
+      "logout": "登出"
+    }
+  },
+  "landing": {
+    "1": {
+      "badge": "现在支持高级分析",
+      "title": {
+        "1": "管理您的",
+        "2": "团队和项目",
+        "3": "前所未有的体验"
+      },
+      "description": "ProjectM 是一个团队管理工具，帮助您更高效地管理项目和团队。在同一平台上创建项目、邀请成员、分配任务并跟踪进度。",
+      "button": {
+        "1": "免费开始",
+        "2": "观看演示"
+      },
+      "rating": {
+        "1": "超过 10,000 个团队信赖",
+        "2": "评分"
+      }
+    },
+    "2": {
+      "title": "成功所需的一切",
+      "description": "强大功能，旨在简化您的工作流程并提升团队生产力",
+      "card": {
+        "1": {
+          "title": "团队协作",
+          "description": "创建项目并邀请成员，实现组织内无缝协作。"
+        },
+        "2": {
+          "title": "任务管理",
+          "description": "分配任务、设定截止日期并通过直观系统跟踪进度。"
+        },
+        "3": {
+          "title": "进度追踪",
+          "description": "通过实时分析和详细报告监控项目进度。"
+        },
+        "4": {
+          "title": "团队沟通",
+          "description": "内置沟通工具保持团队联络并推动项目进展。"
+        }
+      }
+    },
+    "3": {
+      "title": "为什么选择 ProjectM？",
+      "description": "数千个团队已通过 ProjectM 重塑了工作流程。",
+      "card": {
+        "1": {
+          "title": "提升生产力",
+          "description": "优化流程、消除瓶颈，更高效地完成任务。"
+        },
+        "2": {
+          "title": "安全可靠",
+          "description": "企业级安全保证您的项目和数据安全。"
+        },
+        "3": {
+          "title": "节省时间",
+          "description": "自动化流程和智能提醒，让团队专注于核心任务。"
+        }
+      }
+    },
+    "4": {
+      "title": "准备好革新团队管理了吗？",
+      "description": "今天开始您的免费试用，看看 ProjectM 如何帮助团队共同成长。",
+      "button": {
+        "1": "开始免费试用",
+        "2": "联系销售"
+      },
+      "placeholder": "无需信用卡 • 14 天免费试用 • 随时取消"
+    },
+    "5": {
+      "card": {
+        "1": {
+          "title": "为现代企业打造的终极团队管理工具。"
+        },
+        "2": {
+          "title": "产品",
+          "items": {
+            "1": "功能",
+            "2": "定价",
+            "3": "安全",
+            "4": "集成"
+          }
+        },
+        "3": {
+          "title": "公司",
+          "items": {
+            "1": "关于我们",
+            "2": "博客",
+            "3": "招聘",
+            "4": "联系"
+          }
+        },
+        "4": {
+          "title": "支持",
+          "items": {
+            "1": "帮助中心",
+            "2": "服务条款",
+            "3": "隐私政策",
+            "4": "文档"
+          }
+        }
+      }
+    }
+  },
+  "auth": {
+    "register": {
+      "title": "欢迎回来",
+      "description": "创建 ProjectM 帐户",
+      "name": "姓名",
+      "pass": "密码",
+      "confirmPass": "确认密码",
+      "forgot": "忘记密码？",
+      "button": "注册",
+      "drive": "或使用以下方式继续",
+      "placeholder": "已有帐号？",
+      "link": "登录"
+    },
+    "signin": {
+      "title": "欢迎回来",
+      "description": "登录您的 ProjectM 帐户",
+      "pass": "密码",
+      "forgot": "忘记密码？",
+      "button": "登录",
+      "drive": "或使用以下方式继续",
+      "placeholder": "没有帐号？",
+      "link": "注册"
+    },
+    "confirm_email": {
+      "title": "确认您的邮箱",
+      "description": "我们已向您提供的地址发送确认邮件。请查收并点击链接确认帐户。",
+      "button": "前往登录"
+    }
+  },
+  "sidebar": {
+    "navigation": {
+      "title": "导航",
+      "dashboard": "仪表盘",
+      "timeline": "时间线",
+      "search": "搜索",
+      "settings": "设置",
+      "users": "用户",
+      "teams": "团队"
+    },
+    "projects": "项目",
+    "priority": {
+      "title": "优先级筛选",
+      "urgent": "紧急",
+      "high": "高",
+      "medium": "中",
+      "low": "低",
+      "backlog": "待办"
+    }
+  },
+  "page": {
+    "dashboard": {
+      "title": "仪表盘",
+      "part": {
+        "1": {
+          "card": {
+            "1": {
+              "title": "任务总数",
+              "description": "比上月增长 +12%"
+            },
+            "2": {
+              "title": "进行中",
+              "description": "比上月增长 +4%"
+            },
+            "3": {
+              "title": "已完成",
+              "description": "比上月增长 +8%"
+            },
+            "4": {
+              "title": "已过期",
+              "description": "比上月下降 -1%"
+            }
+          }
+        },
+        "2": {
+          "card": {
+            "1": {
+              "title": "最近任务"
+            },
+            "2": {
+              "title": "每周任务活动"
+            }
+          }
+        },
+        "3": {
+          "title": "快速操作",
+          "card": {
+            "1": {
+              "title": "创建新任务",
+              "description": "为您的项目添加新任务"
+            },
+            "2": {
+              "title": "创建项目",
+              "description": "创建一个新项目"
+            },
+            "3": {
+              "title": "邀请团队成员",
+              "description": "邀请成员加入您的项目"
+            },
+            "4": {
+              "title": "生成报告",
+              "description": "为您的项目生成报告"
+            }
+          },
+          "dialog": {
+            "project": {
+              "title": "创建新项目",
+              "description1": "在此创建团队项目。完成后点击保存。",
+              "name": "项目名称",
+              "description2": "描述",
+              "date": {
+                "1": "开始日期",
+                "2": "截止日期"
+              },
+              "button": {
+                "1": "取消",
+                "2": "创建"
+              }
+            }
+          }
+        }
+      }
+    },
+    "setting": {
+      "title": "设置",
+      "part": {
+        "1": {
+          "title": "头像",
+          "button": "编辑头像"
+        },
+        "2": {
+          "username": "用户名"
+        }
+      },
+      "dialog": {
+        "title": "更新头像",
+        "label1": "图片",
+        "label2": "预览",
+        "button": {
+          "1": "取消",
+          "2": "更新"
+        }
+      }
+    },
+    "users": {
+      "title": "用户",
+      "caption": "您用户的发票列表。",
+      "table": {
+        "1": "序号",
+        "2": "姓名",
+        "3": "头像"
+      }
+    },
+    "project": {
+      "delete_button": "删除项目",
+      "tab": {
+        "board": "看板",
+        "list": "列表",
+        "timeline": "时间线",
+        "table": "表格"
+      },
+      "status": {
+        "todo": "待办事项",
+        "work_in_progress": "进行中",
+        "under_review": "审核中",
+        "completed": "已完成"
+      },
+      "dialog": {
+        "title": "创建新任务",
+        "form": {
+          "task_title": "任务标题",
+          "description": "描述",
+          "status": {
+            "title": "状态",
+            "option": {
+              "todo": "待办事项",
+              "work_in_progress": "进行中",
+              "under_review": "审核中",
+              "completed": "已完成"
+            }
+          },
+          "priority": {
+            "title": "优先级",
+            "option": {
+              "urgent": "紧急",
+              "high": "高",
+              "medium": "中",
+              "low": "低",
+              "backlog": "待办"
+            }
+          },
+          "start_date": "开始日期",
+          "due_date": "截止日期",
+          "points": "分数",
+          "tags": "标签",
+          "assigned_user_id": "分配用户ID",
+          "image": "图片",
+          "button": {
+            "1": "取消",
+            "2": "创建"
+          }
+        }
+      }
+    },
+    "priority": {
+      "urgent": "优先级：紧急",
+      "high": "优先级：高",
+      "medium": "优先级：中",
+      "low": "优先级：低",
+      "backlog": "优先级：待办"
+    }
+  }
+}

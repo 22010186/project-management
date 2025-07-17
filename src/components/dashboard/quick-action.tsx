@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Calendar, Users, FileText } from "lucide-react";
@@ -20,6 +22,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import { createProject } from "@/lib/supabase/api/projects";
 import { useStateUser } from "@/store/state";
+import { useTranslation } from "react-i18next";
 
 const quickActions = [
   {
@@ -54,6 +57,7 @@ export function QuickActions() {
   const { register, handleSubmit } = useForm<Partial<Project>>();
   const queryClient = useQueryClient();
   const { dataUser: user } = useStateUser();
+  const { t } = useTranslation();
 
   const handleClick = (action: string) => {
     setTypeForm(action);
@@ -77,11 +81,11 @@ export function QuickActions() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle>{t("page.dashboard.part.3.title")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {quickActions.map((action) => (
+            {quickActions.map((action, index) => (
               <Button
                 key={action.action}
                 variant="outline"
@@ -90,9 +94,15 @@ export function QuickActions() {
               >
                 <action.icon className="h-6 w-6" />
                 <div className="text-center">
-                  <div className="font-medium">{action.title}</div>
+                  <div className="font-medium">
+                    {t("page.dashboard.part.3.card." + (index + 1) + ".title")}
+                  </div>
                   <div className="text-xs text-muted-foreground">
-                    {action.description}
+                    {t(
+                      "page.dashboard.part.3.card." +
+                        (index + 1) +
+                        ".description"
+                    )}
                   </div>
                 </div>
               </Button>
@@ -106,15 +116,18 @@ export function QuickActions() {
           {typeForm === "project" && (
             <form onSubmit={handleSubmit(handleOnSubmit)}>
               <DialogHeader>
-                <DialogTitle>Create New Project</DialogTitle>
+                <DialogTitle>
+                  {t("page.dashboard.part.3.dialog.project.title")}
+                </DialogTitle>
                 <DialogDescription>
-                  Create your team project here. Click save when you&apos;re
-                  done.
+                  {t("page.dashboard.part.3.dialog.project.description1")}
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 my-4">
                 <div className="grid gap-3">
-                  <Label htmlFor="name-1">Name</Label>
+                  <Label htmlFor="name-1">
+                    {t("page.dashboard.part.3.dialog.project.name")}
+                  </Label>
                   <Input
                     id="name-1"
                     placeholder="eg: My Project"
@@ -122,12 +135,16 @@ export function QuickActions() {
                   />
                 </div>
                 <div className="grid gap-3">
-                  <Label htmlFor="description">Description</Label>
+                  <Label htmlFor="description">
+                    {t("page.dashboard.part.3.dialog.project.description2")}
+                  </Label>
                   <Input id="description" {...register("description")} />
                 </div>
                 <div className="flex gap-3 justify-between">
                   <div className="grid gap-3 w-full">
-                    <Label htmlFor="start-date">Start Date</Label>
+                    <Label htmlFor="start-date">
+                      {t("page.dashboard.part.3.dialog.project.date.1")}
+                    </Label>
                     <Input
                       id="start-date"
                       type="date"
@@ -137,7 +154,9 @@ export function QuickActions() {
                     />
                   </div>
                   <div className="grid gap-3 w-full">
-                    <Label htmlFor="end-date">Due Date</Label>
+                    <Label htmlFor="end-date">
+                      {t("page.dashboard.part.3.dialog.project.date.2")}
+                    </Label>
                     <Input
                       id="end-date"
                       type="date"
@@ -150,9 +169,13 @@ export function QuickActions() {
               </div>
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
+                  <Button variant="outline">
+                    {t("page.dashboard.part.3.dialog.project.button.1")}
+                  </Button>
                 </DialogClose>
-                <Button type="submit">Create</Button>
+                <Button type="submit">
+                  {t("page.dashboard.part.3.dialog.project.button.2")}
+                </Button>
               </DialogFooter>
             </form>
           )}

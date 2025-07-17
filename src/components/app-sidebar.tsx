@@ -36,18 +36,19 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllProjects } from "@/lib/supabase/api/projects";
 import { useStateProject, useStateUser } from "@/store/state";
 import { Loading } from "./loading";
 import { Project } from "@/store/type";
 import LanguageToggle from "./language";
+import { useTranslation } from "react-i18next";
 
 export function AppSidebar() {
   const { dataUser: user } = useStateUser();
   const { setProjects } = useStateProject();
-  const pathname = usePathname();
+  const { t } = useTranslation();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["projects"],
@@ -96,7 +97,7 @@ export function AppSidebar() {
                   className="w-full text-lg font-bold py-4 flex items-center justify-between"
                   variant="ghost"
                 >
-                  <span>Navigation</span>
+                  <span>{t("sidebar.navigation.title")}</span>
                   <ChevronDown className="transition-transform group-data-[state=open]/collapsible:-rotate-90" />
                 </Button>
               </CollapsibleTrigger>
@@ -107,20 +108,38 @@ export function AppSidebar() {
                     icon={Home}
                     label="Dashboard"
                     href="/dashboard"
+                    type="navigation"
                   />
                   <SidebarLink
                     icon={Briefcase}
                     label="Timeline"
                     href="/timeline"
+                    type="navigation"
                   />
-                  <SidebarLink icon={Search} label="Search" href="/search" />
+                  <SidebarLink
+                    icon={Search}
+                    label="Search"
+                    href="/search"
+                    type="navigation"
+                  />
                   <SidebarLink
                     icon={Settings}
                     label="Settings"
                     href="/settings"
+                    type="navigation"
                   />
-                  <SidebarLink icon={User} label="Users" href="/users" />
-                  <SidebarLink icon={Users} label="Teams" href="/teams" />
+                  <SidebarLink
+                    icon={User}
+                    label="Users"
+                    href="/users"
+                    type="navigation"
+                  />
+                  <SidebarLink
+                    icon={Users}
+                    label="Teams"
+                    href="/teams"
+                    type="navigation"
+                  />
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
@@ -136,7 +155,7 @@ export function AppSidebar() {
                   className="w-full text-lg font-bold py-4 flex items-center justify-between"
                   variant="ghost"
                 >
-                  <span>Projects</span>
+                  <span>{t("sidebar.projects")}</span>
                   <ChevronDown className="transition-transform group-data-[state=open]/collapsible:-rotate-90" />
                 </Button>
               </CollapsibleTrigger>
@@ -152,6 +171,7 @@ export function AppSidebar() {
                             label={project.name}
                             id={project.id}
                             href={`/project/${project.id}`}
+                            type="project"
                           />
                         )
                     )}
@@ -170,7 +190,7 @@ export function AppSidebar() {
                   className="w-full text-lg font-bold py-4 flex items-center justify-between"
                   variant="ghost"
                 >
-                  <span>Priority</span>
+                  <span>{t("sidebar.priority.title")}</span>
                   <ChevronDown className="transition-transform group-data-[state=open]/collapsible:-rotate-90" />
                 </Button>
               </CollapsibleTrigger>
@@ -180,26 +200,31 @@ export function AppSidebar() {
                     icon={AlertCircle}
                     label="Urgent"
                     href="/priority/urgent"
+                    type="priority"
                   />
                   <SidebarLink
                     icon={ShieldAlert}
                     label="High"
                     href="/priority/high"
+                    type="priority"
                   />
                   <SidebarLink
                     icon={AlertTriangle}
                     label="Medium"
                     href="/priority/medium"
+                    type="priority"
                   />
                   <SidebarLink
                     icon={AlertOctagon}
                     label="Low"
                     href="/priority/low"
+                    type="priority"
                   />
                   <SidebarLink
                     icon={Layers3}
                     label="Backlog"
                     href="/priority/backlog"
+                    type="priority"
                   />
                 </SidebarMenuSub>
               </CollapsibleContent>
@@ -217,13 +242,28 @@ interface SidebarLinkProps {
   icon: LucideIcon;
   label: string;
   id?: number;
+  type: string;
 }
 
-const SidebarLink = ({ href, icon: Icon, label, id }: SidebarLinkProps) => {
+const SidebarLink = ({
+  href,
+  icon: Icon,
+  label,
+  id,
+  type,
+}: SidebarLinkProps) => {
   const pathname = usePathname();
   const { setName, setId } = useStateProject();
+  const { t } = useTranslation();
 
   const isActive = pathname == href;
+
+  function sliceUrl(url: string, type: string) {
+    if (type == "priority") {
+      return url.split("/")[2];
+    }
+    return url.slice(1);
+  }
 
   useEffect(() => {
     if (isActive) {
@@ -235,7 +275,10 @@ const SidebarLink = ({ href, icon: Icon, label, id }: SidebarLinkProps) => {
   }, [isActive]);
 
   return (
-    <Link href={href} className="w-full">
+    <Link
+      href={href == "/search" || href == "/timeline" ? "/dashboard" : href}
+      className="w-full"
+    >
       <SidebarMenuSubItem
         className={`relative flex cursor-pointer justify-start px-4 py-2 items-center gap-3 transition-colors hover:bg-gray-100  dark:hover:bg-gray-700 ${
           isActive ? "bg-gray-100 text-white dark:bg-gray-800 font-bold" : ""
@@ -246,7 +289,9 @@ const SidebarLink = ({ href, icon: Icon, label, id }: SidebarLinkProps) => {
         )}
         <Icon className="size-5 text-gray-800 dark:text-gray-100" />
         <span className="font-medium text-base text-gray-800 dark:text-gray-100">
-          {label}
+          {type != "project"
+            ? t("sidebar." + type + "." + sliceUrl(href, type))
+            : label}
         </span>
       </SidebarMenuSubItem>
     </Link>

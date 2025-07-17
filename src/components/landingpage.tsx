@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRight,
   BarChart3,
@@ -14,8 +16,10 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { useRouter } from "next/navigation";
 import { useStateUser } from "@/store/state";
+import { useTranslation } from "react-i18next";
 
 export const LandingPage = () => {
+  const { t } = useTranslation();
   const features = [
     {
       icon: Users,
@@ -79,19 +83,17 @@ export const LandingPage = () => {
       <section className=" px-4">
         <div className="container mx-auto text-center max-w-4xl">
           <Badge className="mb-6 bg-blue-100 text-blue-700 hover:bg-blue-100">
-            ✨ Now with Advanced Analytics
+            ✨ {t("landing.1.badge")}
           </Badge>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Manage Your{" "}
+            {t("landing.1.title.1")}{" "}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Teams & Projects
+              {t("landing.1.title.2")}
             </span>{" "}
-            Like Never Before
+            {t("landing.1.title.3")}
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            ProjectM is a team management tool designed to help you manage your
-            projects and teams more efficiently. Create projects, invite team
-            members, assign tasks, and track progress all in one place.
+            {t("landing.1.description")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
@@ -99,11 +101,11 @@ export const LandingPage = () => {
               size="lg"
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-3"
             >
-              Start For Free
+              {t("landing.1.button.1")}
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-3">
-              Watch Demo
+              {t("landing.1.button.2")}
             </Button>
           </div>
           <div className="mt-12 flex items-center justify-center space-x-6 text-sm text-gray-500">
@@ -113,11 +115,11 @@ export const LandingPage = () => {
                 <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-400"></div>
                 <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-400"></div>
               </div>
-              <span className="ml-3">Trusted by 10,000+ teams</span>
+              <span className="ml-3">{t("landing.1.rating.1")}</span>
             </div>
             <div className="flex items-center">
               <Star className="w-4 h-4 text-yellow-400 fill-current" />
-              <span className="ml-1">4.9/5 rating</span>
+              <span className="ml-1">4.9/5 ({t("landing.1.rating.2")})</span>
             </div>
           </div>
         </div>
@@ -128,11 +130,10 @@ export const LandingPage = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Everything You Need to Succeed
+              {t("landing.2.title")}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Powerful features designed to streamline your workflow and boost
-              team productivity
+              {t("landing.2.description")}
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -146,10 +147,10 @@ export const LandingPage = () => {
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-100 mb-3">
-                    {feature.title}
+                    {t("landing.2.card." + (index + 1) + ".title")}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {feature.description}
+                    {t("landing.2.card." + (index + 1) + ".description")}
                   </p>
                 </CardContent>
               </Card>
@@ -166,11 +167,10 @@ export const LandingPage = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Choose ProjectM?
+              {t("landing.3.title")}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Join thousands of teams who have transformed their workflow with
-              ProjectM
+              {t("landing.3.description")}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -180,10 +180,10 @@ export const LandingPage = () => {
                   <benefit.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                  {benefit.title}
+                  {t("landing.3.card." + (index + 1) + ".title")}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {benefit.description}
+                  {t("landing.3.card." + (index + 1) + ".description")}
                 </p>
               </div>
             ))}
@@ -195,18 +195,17 @@ export const LandingPage = () => {
       <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="container mx-auto text-center max-w-4xl">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Transform Your Team Management?
+            {t("landing.4.title")}
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Start your free trial today and see how ProjectM can help your team
-            achieve more together.
+            {t("landing.4.description")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
               size="lg"
               className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-3"
             >
-              Start Free Trial
+              {t("landing.4.button.1")}
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button
@@ -214,11 +213,11 @@ export const LandingPage = () => {
               variant="outline"
               className="border-white hover:bg-white text-blue-400 hover:text-blue-600 text-lg px-8 py-3"
             >
-              Contact Sales
+              {t("landing.4.button.2")}
             </Button>
           </div>
           <p className="text-blue-100 text-sm mt-6">
-            No credit card required • 14-day free trial • Cancel anytime
+            {t("landing.4.placeholder")}
           </p>
         </div>
       </section>
@@ -235,80 +234,86 @@ export const LandingPage = () => {
                 <span className="text-xl font-bold">ProjectM</span>
               </div>
               <p className="text-gray-400 leading-relaxed">
-                The ultimate team management tool for modern businesses.
+                {t("landing.5.card.1.title")}
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Product</h4>
+              <h4 className="font-semibold mb-4">
+                {t("landing.5.card.2.title")}
+              </h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Features
+                    {t("landing.5.card.2.items.1")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Pricing
+                    {t("landing.5.card.2.items.2")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Security
+                    {t("landing.5.card.2.items.3")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Integrations
+                    {t("landing.5.card.2.items.4")}
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Company</h4>
+              <h4 className="font-semibold mb-4">
+                {t("landing.5.card.3.title")}
+              </h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    About
+                    {t("landing.5.card.3.items.1")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Blog
+                    {t("landing.5.card.3.items.2")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Careers
+                    {t("landing.5.card.3.items.3")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Contact
+                    {t("landing.5.card.3.items.4")}
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Support</h4>
+              <h4 className="font-semibold mb-4">
+                {t("landing.5.card.4.title")}
+              </h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Help Center
+                    {t("landing.5.card.4.items.1")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Documentation
+                    {t("landing.5.card.4.items.2")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    API Reference
+                    {t("landing.5.card.4.items.3")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Status
+                    {t("landing.5.card.4.items.4")}
                   </a>
                 </li>
               </ul>

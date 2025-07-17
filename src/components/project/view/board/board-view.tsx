@@ -10,7 +10,24 @@ type BoardProps = {
   tasks?: Task[];
 };
 
-const taskStatus = ["To Do", "Work In Progress", "Under Review", "Completed"];
+const taskStatus = [
+  {
+    title: "To Do",
+    key_lng: "todo",
+  },
+  {
+    title: "Work In Progress",
+    key_lng: "work_in_progress",
+  },
+  {
+    title: "Under Review",
+    key_lng: "under_review",
+  },
+  {
+    title: "Completed",
+    key_lng: "completed",
+  },
+];
 
 export const BoardView = ({ id, tasks }: BoardProps) => {
   const moveTask = async (taskId: string, toStatus: string) => {
@@ -30,8 +47,9 @@ export const BoardView = ({ id, tasks }: BoardProps) => {
         {taskStatus.map((status) => (
           <TaskColumn
             projectId={id}
-            key={status}
-            status={status}
+            key={status.title}
+            status={status.title}
+            keyLng={status.key_lng}
             tasks={tasks ?? []}
             moveTask={moveTask}
           />

@@ -15,6 +15,7 @@ import { SidebarTrigger } from "../ui/sidebar";
 import { getUserData } from "@/lib/supabase/api/auth";
 import { useQuery } from "@tanstack/react-query";
 import LanguageToggle from "../language";
+import { useTranslation } from "react-i18next";
 
 interface HeaderProps {
   className?: string;
@@ -25,6 +26,7 @@ export const NavBar = ({ className }: HeaderProps) => {
   const isLandingPage = useMemo(() => pathname === "/", [pathname]);
   const { dataUser: user, setDataUser } = useStateUser();
   const { changeAction } = useIsLogin();
+  const { t } = useTranslation();
 
   const query = useQuery({
     queryKey: ["user-data"],
@@ -49,7 +51,6 @@ export const NavBar = ({ className }: HeaderProps) => {
 
         <div className="md:hidden cursor-pointer">
           <SidebarTrigger />
-          {/* <AlignJustify size={24} onClick={() => open()} /> */}
         </div>
 
         <div className="relative h-fit w-full px-4 lg:px-10">
@@ -59,7 +60,7 @@ export const NavBar = ({ className }: HeaderProps) => {
           />
           <Input
             type="text"
-            placeholder="Search..."
+            placeholder={t("search") + " ..."}
             className="rounded-full box-border px-4 w-full text-base"
           />
         </div>
@@ -72,10 +73,10 @@ export const NavBar = ({ className }: HeaderProps) => {
               {isLandingPage && (
                 <>
                   <Button variant="ghost" asChild>
-                    <Link href="/auth">Sign in</Link>
+                    <Link href="/auth">{t("nav.signin")}</Link>
                   </Button>
                   <Button asChild onClick={changeAction}>
-                    <Link href="/auth">Get Started</Link>
+                    <Link href="/auth">{t("nav.get_started")}</Link>
                   </Button>
                 </>
               )}

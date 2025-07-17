@@ -1,0 +1,114 @@
+{
+  "search": "Rechercher",
+  "nav": {
+    "signin": "Se connecter",
+    "get_started": "Commencer",
+    "dropdown": {
+      "title": "Connecté avec",
+      "setting": "Paramètres",
+      "logout": "Déconnexion"
+    }
+  },
+  "landing": {
+    "1": {
+      "badge": "Maintenant avec des analyses avancées",
+      "title": {
+        "1": "Gérez vos",
+        "2": "Équipes et projets",
+        "3": "Comme jamais auparavant"
+      },
+      "description": "ProjectM est un outil de gestion d'équipe conçu pour vous aider à gérer vos projets et vos équipes plus efficacement. Créez des projets, invitez des membres, attribuez des tâches et suivez les progrès au même endroit.",
+      "button": {
+        "1": "Commencer gratuitement",
+        "2": "Regarder la démo"
+      },
+      "rating": {
+        "1": "Fait confiance par plus de 10 000 équipes",
+        "2": "évaluation"
+      }
+    },
+    "2": {
+      "title": "Tout ce dont vous avez besoin pour réussir",
+      "description": "Des fonctionnalités puissantes pour simplifier votre flux de travail et booster la productivité",
+      "card": {
+        "1": {
+          "title": "Collaboration d'équipe",
+          "description": "Créez des projets et invitez des membres pour collaborer facilement."
+        },
+        "2": {
+          "title": "Gestion des tâches",
+          "description": "Attribuez des tâches, fixez des délais et suivez l’avancement facilement."
+        },
+        "3": {
+          "title": "Suivi des progrès",
+          "description": "Surveillez l'avancement avec des analyses en temps réel et des rapports détaillés."
+        },
+        "4": {
+          "title": "Communication d'équipe",
+          "description": "Des outils intégrés pour garder votre équipe connectée."
+        }
+      }
+    },
+    "3": {
+      "title": "Pourquoi choisir ProjectM ?",
+      "description": "Rejoignez des milliers d’équipes ayant transformé leur façon de travailler avec ProjectM.",
+      "card": {
+        "1": {
+          "title": "Augmenter la productivité",
+          "description": "Simplifiez les flux de travail et éliminez les blocages."
+        },
+        "2": {
+          "title": "Sécurisé & Fiable",
+          "description": "Sécurité de niveau entreprise pour vos données."
+        },
+        "3": {
+          "title": "Gagner du temps",
+          "description": "Automatisation et notifications intelligentes pour une concentration maximale."
+        }
+      }
+    },
+    "4": {
+      "title": "Prêt à transformer votre gestion d’équipe ?",
+      "description": "Commencez votre essai gratuit et voyez ce que ProjectM peut faire pour vous.",
+      "button": {
+        "1": "Essai gratuit",
+        "2": "Contacter le service commercial"
+      },
+      "placeholder": "Pas de carte requise • Essai 14 jours • Annulez à tout moment"
+    },
+    "5": {
+      "card": {
+        "1": {
+          "title": "L’outil ultime de gestion d’équipe pour les entreprises modernes."
+        },
+        "2": {
+          "title": "Produit",
+          "items": {
+            "1": "Fonctionnalités",
+            "2": "Tarification",
+            "3": "Sécurité",
+            "4": "Intégrations"
+          }
+        },
+        "3": {
+          "title": "Entreprise",
+          "items": {
+            "1": "À propos",
+            "2": "Blog",
+            "3": "Carrières",
+            "4": "Contact"
+          }
+        },
+        "4": {
+          "title": "Support",
+          "items": {
+            "1": "Centre d'aide",
+            "2": "Conditions d’utilisation",
+            "3": "Politique de confidentialité",
+            "4": "Documentation"
+          }
+        }
+      }
+    }
+  }
+}

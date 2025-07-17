@@ -1,0 +1,325 @@
+{
+  "search": "Tìm kiếm",
+  "nav": {
+    "signin": "Đăng nhập",
+    "get_started": "Bắt đầu",
+    "dropdown": {
+      "title": "Đăng nhập bằng",
+      "setting": "Cài đặt",
+      "logout": "Đăng xuất"
+    }
+  },
+  "landing": {
+    "1": {
+      "badge": "Giờ đây với Phân tích nâng cao",
+      "title": {
+        "1": "Quản lý",
+        "2": "Đội ngũ & Dự án",
+        "3": "Hiệu quả hơn bao giờ hết"
+      },
+      "description": "ProjectM là công cụ quản lý đội ngũ giúp bạn quản lý dự án và nhóm một cách hiệu quả. Tạo dự án, mời thành viên, giao nhiệm vụ và theo dõi tiến độ—all trong một nền tảng.",
+      "button": {
+        "1": "Dùng thử miễn phí",
+        "2": "Xem bản demo"
+      },
+      "rating": {
+        "1": "Được tin dùng bởi hơn 10.000 nhóm",
+        "2": "đánh giá"
+      }
+    },
+    "2": {
+      "title": "Mọi Thứ Bạn Cần Để Thành Công",
+      "description": "Tính năng mạnh mẽ giúp tối ưu quy trình làm việc và nâng cao năng suất nhóm",
+      "card": {
+        "1": {
+          "title": "Hợp Tác Nhóm",
+          "description": "Tạo dự án và mời thành viên tham gia để cộng tác mượt mà trong tổ chức của bạn."
+        },
+        "2": {
+          "title": "Quản Lý Nhiệm Vụ",
+          "description": "Giao nhiệm vụ, đặt thời hạn và theo dõi tiến độ với hệ thống quản lý trực quan."
+        },
+        "3": {
+          "title": "Theo Dõi Tiến Độ",
+          "description": "Theo dõi tiến độ dự án với phân tích thời gian thực và báo cáo chi tiết."
+        },
+        "4": {
+          "title": "Giao Tiếp Nhóm",
+          "description": "Công cụ giao tiếp tích hợp giúp đội ngũ luôn kết nối và tiến độ dự án được đảm bảo."
+        }
+      }
+    },
+    "3": {
+      "title": "Tại Sao Chọn ProjectM?",
+      "description": "Hàng ngàn nhóm đã thay đổi quy trình làm việc của họ nhờ ProjectM.",
+      "card": {
+        "1": {
+          "title": "Tăng Năng Suất",
+          "description": "Tối ưu quy trình và loại bỏ điểm nghẽn để hoàn thành nhiều việc hơn trong thời gian ngắn hơn."
+        },
+        "2": {
+          "title": "An Toàn & Đáng Tin Cậy",
+          "description": "Bảo mật cấp doanh nghiệp giúp giữ an toàn cho dữ liệu và dự án của bạn."
+        },
+        "3": {
+          "title": "Tiết Kiệm Thời Gian",
+          "description": "Tự động hóa quy trình và thông báo thông minh giúp nhóm tập trung vào điều quan trọng."
+        }
+      }
+    },
+    "4": {
+      "title": "Sẵn Sàng Đổi Mới Cách Quản Lý Nhóm?",
+      "description": "Hãy bắt đầu dùng thử miễn phí hôm nay và xem cách ProjectM giúp nhóm bạn đạt được nhiều hơn cùng nhau.",
+      "button": {
+        "1": "Bắt đầu dùng thử",
+        "2": "Liên hệ bán hàng"
+      },
+      "placeholder": "Không cần thẻ tín dụng • Dùng thử miễn phí 14 ngày • Hủy bất kỳ lúc nào"
+    },
+    "5": {
+      "card": {
+        "1": {
+          "title": "Công cụ quản lý nhóm tối ưu cho doanh nghiệp hiện đại."
+        },
+        "2": {
+          "title": "Sản phẩm",
+          "items": {
+            "1": "Tính năng",
+            "2": "Bảng giá",
+            "3": "Bảo mật",
+            "4": "Tích hợp"
+          }
+        },
+        "3": {
+          "title": "Công ty",
+          "items": {
+            "1": "Về chúng tôi",
+            "2": "Blog",
+            "3": "Tuyển dụng",
+            "4": "Liên hệ"
+          }
+        },
+        "4": {
+          "title": "Hỗ trợ",
+          "items": {
+            "1": "Trung tâm trợ giúp",
+            "2": "Điều khoản dịch vụ",
+            "3": "Chính sách bảo mật",
+            "4": "Tài liệu"
+          }
+        }
+      }
+    }
+  },
+  "auth": {
+    "register": {
+      "title": "Chào mừng bạn",
+      "description": "Tạo tài khoản ProjectM",
+      "name": "Tên",
+      "pass": "Mật khẩu",
+      "confirmPass": "Xác nhận mật khẩu",
+      "forgot": "Quên mật khẩu?",
+      "button": "Đăng ký",
+      "drive": "Hoặc tiếp tục với",
+      "placeholder": "Đã có tài khoản?",
+      "link": "Đăng nhập"
+    },
+    "signin": {
+      "title": "Chào mừng trở lại",
+      "description": "Đăng nhập vào tài khoản ProjectM của bạn",
+      "pass": "Mật khẩu",
+      "forgot": "Quên mật khẩu?",
+      "button": "Đăng nhập",
+      "drive": "Hoặc tiếp tục với",
+      "placeholder": "Chưa có tài khoản?",
+      "link": "Đăng ký"
+    },
+    "confirm_email": {
+      "title": "Xác nhận email của bạn",
+      "description": "Chúng tôi đã gửi email xác nhận đến địa chỉ bạn cung cấp. Vui lòng kiểm tra email và nhấp vào liên kết để xác nhận tài khoản.",
+      "button": "Đi tới đăng nhập"
+    }
+  },
+  "sidebar": {
+    "navigation": {
+      "title": "Điều hướng",
+      "dashboard": "Bảng điều khiển",
+      "timeline": "Dòng thời gian",
+      "search": "Tìm kiếm",
+      "settings": "Cài đặt",
+      "users": "Người dùng",
+      "teams": "Nhóm"
+    },
+    "projects": "Dự án",
+    "priority": {
+      "title": "Lọc: Mức độ ưu tiên",
+      "urgent": "Khẩn cấp",
+      "high": "Cao",
+      "medium": "Trung bình",
+      "low": "Thấp",
+      "backlog": "Chưa xử lý"
+    }
+  },
+  "page": {
+    "dashboard": {
+      "title": "Bảng điều khiển",
+      "part": {
+        "1": {
+          "card": {
+            "1": {
+              "title": "Tổng số nhiệm vụ",
+              "description": "+12% so với tháng trước"
+            },
+            "2": {
+              "title": "Đang thực hiện",
+              "description": "+4% so với tháng trước"
+            },
+            "3": {
+              "title": "Đã hoàn thành",
+              "description": "+8% so với tháng trước"
+            },
+            "4": {
+              "title": "Quá hạn",
+              "description": "-1% so với tháng trước"
+            }
+          }
+        },
+        "2": {
+          "card": {
+            "1": {
+              "title": "Nhiệm vụ gần đây"
+            },
+            "2": {
+              "title": "Hoạt động nhiệm vụ hàng tuần"
+            }
+          }
+        },
+        "3": {
+          "title": "Hành động nhanh",
+          "card": {
+            "1": {
+              "title": "Tạo nhiệm vụ mới",
+              "description": "Thêm nhiệm vụ mới vào dự án của bạn"
+            },
+            "2": {
+              "title": "Tạo dự án",
+              "description": "Tạo một dự án mới"
+            },
+            "3": {
+              "title": "Mời thành viên",
+              "description": "Mời thành viên vào dự án của bạn"
+            },
+            "4": {
+              "title": "Tạo báo cáo",
+              "description": "Tạo báo cáo cho dự án của bạn"
+            }
+          },
+          "dialog": {
+            "project": {
+              "title": "Tạo Dự Án Mới",
+              "description1": "Tạo dự án nhóm của bạn tại đây. Nhấn lưu khi hoàn tất.",
+              "name": "Tên Dự Án",
+              "description2": "Mô tả",
+              "date": {
+                "1": "Ngày Bắt Đầu",
+                "2": "Hạn Chót"
+              },
+              "button": {
+                "1": "Hủy",
+                "2": "Tạo"
+              }
+            }
+          }
+        }
+      }
+    },
+    "setting": {
+      "title": "Cài đặt",
+      "part": {
+        "1": {
+          "title": "Ảnh đại diện",
+          "button": "Chỉnh sửa ảnh"
+        },
+        "2": {
+          "username": "Tên người dùng"
+        }
+      },
+      "dialog": {
+        "title": "Cập nhật ảnh đại diện",
+        "label1": "Hình ảnh",
+        "label2": "Xem trước",
+        "button": {
+          "1": "Hủy",
+          "2": "Cập nhật"
+        }
+      }
+    },
+    "users": {
+      "title": "Người dùng",
+      "caption": "Danh sách các người dùng gần đây của bạn.",
+      "table": {
+        "1": "STT",
+        "2": "Tên",
+        "3": "Ảnh đại diện"
+      }
+    },
+    "project": {
+      "delete_button": "Xóa Dự Án",
+      "tab": {
+        "board": "Bảng",
+        "list": "Danh sách",
+        "timeline": "Dòng thời gian",
+        "table": "Bảng dữ liệu"
+      },
+      "status": {
+        "todo": "Cần làm",
+        "work_in_progress": "Đang thực hiện",
+        "under_review": "Đang kiểm tra",
+        "completed": "Đã hoàn thành"
+      },
+      "dialog": {
+        "title": "Tạo Nhiệm Vụ Mới",
+        "form": {
+          "task_title": "Tiêu đề nhiệm vụ",
+          "description": "Mô tả",
+          "status": {
+            "title": "Trạng thái",
+            "option": {
+              "todo": "Cần làm",
+              "work_in_progress": "Đang thực hiện",
+              "under_review": "Đang kiểm tra",
+              "completed": "Đã hoàn thành"
+            }
+          },
+          "priority": {
+            "title": "Mức độ ưu tiên",
+            "option": {
+              "urgent": "Khẩn cấp",
+              "high": "Cao",
+              "medium": "Trung bình",
+              "low": "Thấp",
+              "backlog": "Chưa xử lý"
+            }
+          },
+          "start_date": "Ngày bắt đầu",
+          "due_date": "Hạn chót",
+          "points": "Điểm",
+          "tags": "Thẻ",
+          "assigned_user_id": "Người được giao",
+          "image": "Hình ảnh",
+          "button": {
+            "1": "Hủy",
+            "2": "Tạo"
+          }
+        }
+      }
+    },
+    "priority": {
+      "urgent": "Mức độ ưu tiên: Khẩn cấp",
+      "high": "Mức độ ưu tiên: Cao",
+      "medium": "Mức độ ưu tiên: Trung bình",
+      "low": "Mức độ ưu tiên: Thấp",
+      "backlog": "Mức độ ưu tiên: Chưa xử lý"
+    }
+  }
+}

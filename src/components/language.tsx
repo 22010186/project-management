@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,28 +21,38 @@ const languages = [
     label: "English",
     flag: "/images/flag-united-states.png",
   },
+  {
+    code: "fr",
+    label: "Français",
+    flag: "/images/flag-france.png",
+  },
+  {
+    code: "cn",
+    label: "中国话",
+    flag: "/images/flag-china.png",
+  },
 ];
 
 export default function LanguageToggle({ align }: { align: "start" | "end" }) {
-  const [currentLang, setCurrentLang] = useState("en");
+  const { i18n } = useTranslation();
+  const currentLanguage =
+    languages.find((l) => l.code === i18n.language) || languages[0];
 
   const handleChange = (lang: string) => {
-    setCurrentLang(lang);
+    i18n.changeLanguage(lang);
   };
-
-  const current = languages.find((l) => l.code === currentLang);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="flex items-center gap-2">
           <Image
-            src={current?.flag || "/flags/vn.png"}
-            alt={current?.label || ""}
+            src={currentLanguage?.flag || "/flags/vn.png"}
+            alt={currentLanguage?.label || ""}
             width={20}
             height={14}
           />
-          <span>{current?.label}</span>
+          <span>{currentLanguage?.label}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={align}>

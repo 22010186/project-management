@@ -1,17 +1,18 @@
 "use client";
 
-import { Status, Task as TaskType } from "@/store/type";
-import { EllipsisVertical, Plus } from "lucide-react";
+import { Task as TaskType } from "@/store/type";
 import { useDrop } from "react-dnd";
 import { Task } from "./task-view";
 import { useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { AddTask } from "./add-task";
+import { useTranslation } from "react-i18next";
 
 type TaskColumnProps = {
   projectId: string;
   status: string;
+  keyLng: string;
   tasks: TaskType[];
   moveTask: (taskId: string, toStatus: string) => void;
 };
@@ -19,9 +20,11 @@ type TaskColumnProps = {
 const TaskColumn = ({
   projectId,
   status,
+  keyLng,
   tasks,
   moveTask,
 }: TaskColumnProps) => {
+  const { t } = useTranslation();
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "task",
     drop: (item: { id: string }) => moveTask(item.id, status),
@@ -84,7 +87,7 @@ const TaskColumn = ({
         />
         <div className="flex w-full items-center justify-between rounded-e-lg bg-white px-5 py-4 dark:bg-dark-secondary">
           <h3 className="flex items-center text-lg font-semibold">
-            {status}{" "}
+            {t("page.project.status." + keyLng)}{" "}
             <span className="ml-2 inline-block rounded-xl bg-gray-200 p-1 items-center text-sm leading-none dark:bg-dark-tertiary">
               {tasksCount}
             </span>
