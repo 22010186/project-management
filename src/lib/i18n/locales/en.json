@@ -320,6 +320,40 @@
       "medium": "Priority: Medium",
       "low": "Priority: Low",
       "backlog": "Priority: Backlog"
+    },
+    "team": {
+      "title": "Teams",
+      "create": "Create Team",
+      "invite": "Invite",
+      "table": {
+        "1": "Index",
+        "2": "Team ID",
+        "3": "Team Name",
+        "4": "Product Owner",
+        "5": "Project Manager",
+        "6": "Action",
+        "button": {
+          "1": "Remove",
+          "2": "Leave"
+        }
+      },
+      "dialog": {
+        "title": "Create New Team",
+        "description": "Create your team and add a project manager.",
+        "form": {
+          "team_name": "Team Name",
+          "project_manager": "Project Manager",
+          "button": {
+            "1": "Cancel",
+            "2": "Create"
+          }
+        }
+      }
     }
+  },
+  "confirm_email": {
+    "title": "Confirm your email",
+    "description": "We have sent a confirmation email to the address you provided. Please check your inbox and click the link to confirm your account.",
+    "button": "Go to login"
   }
 }

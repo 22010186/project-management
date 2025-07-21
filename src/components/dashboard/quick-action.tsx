@@ -15,7 +15,7 @@ import {
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Project } from "@/store/type";
+import { Project, Team } from "@/store/type";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
@@ -23,6 +23,7 @@ import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import { createProject } from "@/lib/supabase/api/projects";
 import { useStateUser } from "@/store/state";
 import { useTranslation } from "react-i18next";
+import { createTeams } from "@/lib/supabase/api/teams";
 
 const quickActions = [
   {
@@ -54,25 +55,38 @@ const quickActions = [
 export function QuickActions() {
   const [open, setOpen] = useState(false);
   const [typeForm, setTypeForm] = useState("task");
-  const { register, handleSubmit } = useForm<Partial<Project>>();
+  const { register, handleSubmit, reset } = useForm<Partial<Project | Team>>();
   const queryClient = useQueryClient();
   const { dataUser: user } = useStateUser();
   const { t } = useTranslation();
 
   const handleClick = (action: string) => {
+    reset();
     setTypeForm(action);
     setOpen(true);
   };
 
-  const handleOnSubmit: SubmitHandler<Partial<Project>> = async (data) => {
-    if (!user?.teamid) {
-      toast("Error", { description: "Please create team first" });
-    }
+  const handleOnSubmit: SubmitHandler<Partial<Project | Team>> = async (
+    data
+  ) => {
     if (typeForm === "project") {
+      if (!user?.teamid) {
+        toast("Error", { description: "Please create team first" });
+      }
       await createProject(data, user?.teamid);
       toast("Success", { description: "Team created" });
       queryClient.invalidateQueries({ queryKey: ["user-data"] });
       queryClient.invalidateQueries({ queryKey: ["allProjects"] });
+    }
+    if (typeForm === "invite") {
+      // @ts-ignore
+      data.productowneruserid = user?.userid;
+      const { data: team } = await createTeams(data);
+      if (!team) {
+        throw new Error("Team not created");
+      }
+      toast("Success", { description: "Team created" });
+      queryClient.invalidateQueries({ queryKey: ["allTeams"] });
     }
     setOpen(false);
   };
@@ -175,6 +189,48 @@ export function QuickActions() {
                 </DialogClose>
                 <Button type="submit">
                   {t("page.dashboard.part.3.dialog.project.button.2")}
+                </Button>
+              </DialogFooter>
+            </form>
+          )}
+          {typeForm === "invite" && (
+            <form onSubmit={handleSubmit(handleOnSubmit)}>
+              <DialogHeader>
+                <DialogTitle>{t("page.team.dialog.title")}</DialogTitle>
+                <DialogDescription>
+                  {t("page.team.dialog.description")}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 my-4">
+                <div className="grid gap-3">
+                  <Label htmlFor="name-1">
+                    {t("page.team.dialog.form.team_name")}
+                  </Label>
+                  <Input
+                    id="name-1"
+                    placeholder="eg: My Team"
+                    {...register("teamname")}
+                  />
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="username-1">
+                    {t("page.team.dialog.form.project_manager")}
+                  </Label>
+                  <Input
+                    id="username-1"
+                    type="number"
+                    {...register("projectmanageruserid")}
+                  />
+                </div>
+              </div>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline">
+                    {t("page.team.dialog.form.button.1")}
+                  </Button>
+                </DialogClose>
+                <Button type="submit">
+                  {t("page.team.dialog.form.button.2")}
                 </Button>
               </DialogFooter>
             </form>

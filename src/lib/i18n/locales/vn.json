@@ -320,6 +320,40 @@
       "medium": "Mức độ ưu tiên: Trung bình",
       "low": "Mức độ ưu tiên: Thấp",
       "backlog": "Mức độ ưu tiên: Chưa xử lý"
+    },
+    "team": {
+      "title": "Các đội",
+      "create": "Tạo đội",
+      "invite": "Mời",
+      "table": {
+        "1": "STT",
+        "2": "Mã đội",
+        "3": "Tên đội",
+        "4": "Chủ sản phẩm",
+        "5": "Quản lý dự án",
+        "6": "Thao tác",
+        "button": {
+          "1": "Xóa",
+          "2": "Rời"
+        }
+      },
+      "dialog": {
+        "title": "Tạo đội mới",
+        "description": "Tạo đội của bạn và thêm một quản lý dự án.",
+        "form": {
+          "team_name": "Tên đội",
+          "project_manager": "Quản lý dự án",
+          "button": {
+            "1": "Hủy",
+            "2": "Tạo"
+          }
+        }
+      }
     }
+  },
+  "confirm_email": {
+    "title": "Xác nhận email của bạn",
+    "description": "Chúng tôi đã gửi email xác nhận đến địa chỉ bạn cung cấp. Vui lòng kiểm tra email và nhấp vào liên kết để xác nhận tài khoản.",
+    "button": "Đi tới đăng nhập"
   }
 }
