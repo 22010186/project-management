@@ -1,0 +1,359 @@
+{
+  "search": "Search",
+  "nav": {
+    "signin": "Sign In",
+    "get_started": "Get Started",
+    "dropdown": {
+      "title": "Logged with",
+      "setting": "Setting",
+      "logout": "Logout"
+    }
+  },
+  "landing": {
+    "1": {
+      "badge": "Now with Advanced Analytics",
+      "title": {
+        "1": "Manage Your",
+        "2": "Teams & Projects",
+        "3": "Like Never Before"
+      },
+      "description": "ProjectM is a team management tool designed to help you manage your projects and teams more efficiently. Create projects, invite team members, assign tasks, and track progress all in one place.",
+      "button": {
+        "1": "Start For Free",
+        "2": "Watch Demo"
+      },
+      "rating": {
+        "1": "Trusted by 10,000+ teams",
+        "2": "rating"
+      }
+    },
+    "2": {
+      "title": "Everything You Need to Succeed",
+      "description": "Powerful features designed to streamline your workflow and boost team productivity",
+      "card": {
+        "1": {
+          "title": "Team Collaboration",
+          "description": "Create projects and invite team members to collaborate seamlessly across your organization."
+        },
+        "2": {
+          "title": "Task Management",
+          "description": "Assign tasks, set deadlines, and track progress with our intuitive task management system."
+        },
+        "3": {
+          "title": "Progress Tracking",
+          "description": "Monitor project progress with real-time analytics and detailed reporting features."
+        },
+        "4": {
+          "title": "Team Communication",
+          "description": "Built-in communication tools to keep your team connected and projects moving forward."
+        }
+      }
+    },
+    "3": {
+      "title": "Why Choose ProjectM ?",
+      "description": "Join thousands of teams who have transformed their workflow with ProjectM.",
+      "card": {
+        "1": {
+          "title": "Boost Productivity",
+          "description": "Streamline workflows and eliminate bottlenecks to get more done in less time."
+        },
+        "2": {
+          "title": "Secure & Reliable",
+          "description": "Enterprise-grade security to keep your projects and data safe and protected."
+        },
+        "3": {
+          "title": "Save Time",
+          "description": "Automated workflows and smart notifications help your team focus on what matters most."
+        }
+      }
+    },
+    "4": {
+      "title": "Ready to Transform Your Team Management ?",
+      "description": "Start your free trial today and see how ProjectM can help your team achieve more together.",
+      "button": {
+        "1": "Start Free Trial",
+        "2": "Contact Sales"
+      },
+      "placeholder": "No credit card required • 14-day free trial • Cancel anytime"
+    },
+    "5": {
+      "card": {
+        "1": {
+          "title": "The ultimate team management tool for modern businesses."
+        },
+        "2": {
+          "title": "Product",
+          "items": {
+            "1": "Features",
+            "2": "Pricing",
+            "3": "Security",
+            "4": "Integrations"
+          }
+        },
+        "3": {
+          "title": "Company",
+          "items": {
+            "1": "About",
+            "2": "Blog",
+            "3": "Careers",
+            "4": "Contact"
+          }
+        },
+        "4": {
+          "title": "Support",
+          "items": {
+            "1": "Help Center",
+            "2": "Terms of Service",
+            "3": "Privacy Policy",
+            "4": "Documentation"
+          }
+        }
+      }
+    }
+  },
+  "auth": {
+    "register": {
+      "title": "Welcome back",
+      "description": "Create an ProjectM account",
+      "name": "Name",
+      "pass": "Password",
+      "confirmPass": "Confirm Password",
+      "forgot": "Forgot Password ?",
+      "button": "Register",
+      "drive": "Or continue with",
+      "placeholder": "Already have an account?",
+      "link": "Sign In"
+    },
+    "signin": {
+      "title": "Welcome back",
+      "description": "Login to your ProjectM account",
+      "pass": "Password",
+      "forgot": "Forgot Password ?",
+      "button": "Sign In",
+      "drive": "Or continue with",
+      "placeholder": "Don't have an account?",
+      "link": "Sign Up"
+    },
+    "confirm_email": {
+      "title": "Confirm your email",
+      "description": "We've sent a confirmation email to the address you provided. Please check your email and click on the link to confirm your account.",
+      "button": "Go to login"
+    }
+  },
+  "sidebar": {
+    "navigation": {
+      "title": "Navigation",
+      "dashboard": "Dashboard",
+      "timeline": "Timeline",
+      "search": "Search",
+      "settings": "Setting",
+      "users": "Users",
+      "teams": "Teams"
+    },
+    "projects": "Projects",
+    "priority": {
+      "title": "Filter: Priority",
+      "urgent": "Urgent",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "backlog": "Backlog"
+    }
+  },
+  "page": {
+    "dashboard": {
+      "title": "Dashboard",
+      "part": {
+        "1": {
+          "card": {
+            "1": {
+              "title": "Total Tasks",
+              "description": "+12% from last month"
+            },
+            "2": {
+              "title": "Work In Progress",
+              "description": "+4% from last month"
+            },
+            "3": {
+              "title": "Completed",
+              "description": "+8% from last month"
+            },
+            "4": {
+              "title": "Overdue",
+              "description": "-1% from last month"
+            }
+          }
+        },
+        "2": {
+          "card": {
+            "1": {
+              "title": "Recent Tasks"
+            },
+            "2": {
+              "title": "Weekly Task Activity"
+            }
+          }
+        },
+        "3": {
+          "title": "Quick Actions",
+          "card": {
+            "1": {
+              "title": "Create New Task",
+              "description": "Add a new task to your project"
+            },
+            "2": {
+              "title": "Create Project",
+              "description": "Create a new project"
+            },
+            "3": {
+              "title": "Invite Team Members",
+              "description": "Invite team members to your project"
+            },
+            "4": {
+              "title": "Generate Report",
+              "description": "Generate a report for your project"
+            }
+          },
+          "dialog": {
+            "project": {
+              "title": "Create New Project",
+              "description1": "Create your team project here. Click save when you're done.",
+              "name": "Project Name",
+              "description2": "Description",
+              "date": {
+                "1": "Start Date",
+                "2": "Due Date"
+              },
+              "button": {
+                "1": "Cancel",
+                "2": "Create"
+              }
+            }
+          }
+        }
+      }
+    },
+    "setting": {
+      "title": "Settings",
+      "part": {
+        "1": {
+          "title": "Avatar",
+          "button": "Edit Avatar"
+        },
+        "2": {
+          "username": "Username"
+        }
+      },
+      "dialog": {
+        "title": "Update Avatar",
+        "label1": "Image",
+        "label2": "Preview",
+        "button": {
+          "1": "Cancel",
+          "2": "Update"
+        }
+      }
+    },
+    "users": {
+      "title": "Users",
+      "caption": "A list of your users invoices.",
+      "table": {
+        "1": "Index",
+        "2": "Name",
+        "3": "Avatar"
+      }
+    },
+    "project": {
+      "delete_button": "Delete Project",
+      "tab": {
+        "board": "Board",
+        "list": "List",
+        "timeline": "Timeline",
+        "table": "Table"
+      },
+      "status": {
+        "todo": "To Do",
+        "work_in_progress": "Work In Progress",
+        "under_review": "Under Review",
+        "completed": "Completed"
+      },
+      "dialog": {
+        "title": "Create New Task",
+        "form": {
+          "task_title": "Task Title",
+          "description": "Description",
+          "status": {
+            "title": "Status",
+            "option": {
+              "todo": "To Do",
+              "work_in_progress": "Work In Progress",
+              "under_review": "Under Review",
+              "completed": "Completed"
+            }
+          },
+          "priority": {
+            "title": "Priority",
+            "option": {
+              "urgent": "Urgent",
+              "high": "High",
+              "medium": "Medium",
+              "low": "Low",
+              "backlog": "Backlog"
+            }
+          },
+          "start_date": "Start Date",
+          "due_date": "Due Date",
+          "points": "Points",
+          "tags": "Tags",
+          "assigned_user_id": "Assigned User ID",
+          "image": "Image",
+          "button": {
+            "1": "Cancel",
+            "2": "Create"
+          }
+        }
+      }
+    },
+    "priority": {
+      "urgent": "Priority: Urgent",
+      "high": "Priority: High",
+      "medium": "Priority: Medium",
+      "low": "Priority: Low",
+      "backlog": "Priority: Backlog"
+    },
+    "team": {
+      "title": "Teams",
+      "create": "Create Team",
+      "invite": "Invite",
+      "table": {
+        "1": "Index",
+        "2": "Team ID",
+        "3": "Team Name",
+        "4": "Product Owner",
+        "5": "Project Manager",
+        "6": "Action",
+        "button": {
+          "1": "Remove",
+          "2": "Leave"
+        }
+      },
+      "dialog": {
+        "title": "Create New Team",
+        "description": "Create your team and add a project manager.",
+        "form": {
+          "team_name": "Team Name",
+          "project_manager": "Project Manager",
+          "button": {
+            "1": "Cancel",
+            "2": "Create"
+          }
+        }
+      }
+    }
+  },
+  "confirm_email": {
+    "title": "Confirm your email",
+    "description": "We have sent a confirmation email to the address you provided. Please check your inbox and click the link to confirm your account.",
+    "button": "Go to login"
+  }
+}

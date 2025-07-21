@@ -11,6 +11,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { login } from "@/lib/supabase/api/actions";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 interface Inputs {
   email: string;
@@ -26,6 +27,7 @@ export function LoginForm({
   const router = useRouter();
   const { register, handleSubmit } = useForm<Inputs>();
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
     const { user, error } = await login(data);
@@ -53,9 +55,9 @@ export function LoginForm({
           <form onSubmit={handleSubmit(handleOnSubmit)} className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-2xl font-bold">Welcome back</h1>
+                <h1 className="text-2xl font-bold">{t("auth.signin.title")}</h1>
                 <p className="text-balance text-muted-foreground">
-                  Login to your ProjectM account
+                  {t("auth.signin.description")}
                 </p>
               </div>
               <div className="grid gap-2">
@@ -70,12 +72,12 @@ export function LoginForm({
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">{t("auth.signin.pass")}</Label>
                   <a
                     href="#"
                     className="ml-auto text-sm underline-offset-2 hover:underline"
                   >
-                    Forgot your password?
+                    {t("auth.signin.forgot")}
                   </a>
                 </div>
                 <Input
@@ -90,7 +92,7 @@ export function LoginForm({
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
-                  Or continue with
+                  {t("auth.signin.drive")}
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -123,12 +125,12 @@ export function LoginForm({
                 </Button>
               </div>
               <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
+                {t("auth.signin.placeholder")}{" "}
                 <span
                   onClick={changeAction}
                   className="underline underline-offset-4 cursor-pointer"
                 >
-                  Sign up
+                  {t("auth.signin.link")}
                 </span>
               </div>
             </div>

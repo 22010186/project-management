@@ -1,7 +1,10 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Clock, AlertCircle, TrendingUp } from "lucide-react";
 import { Task } from "@/store/type";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 type TaskStatusProp = {
   tasks: Task[];
@@ -39,13 +42,15 @@ const stats = [
 ];
 
 export function TaskStats({ tasks }: TaskStatusProp) {
+  const { t } = useTranslation();
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      {stats.map((stat) => (
+      {stats.map((stat, index) => (
         <Card key={stat.title}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {stat.title}
+              {t("page.dashboard.part.1.card." + (index + 1) + ".title")}
             </CardTitle>
             <stat.icon className={`h-4 w-4 ${stat.color}`} />
           </CardHeader>
@@ -76,7 +81,7 @@ export function TaskStats({ tasks }: TaskStatusProp) {
             )}
             <p className="text-xs text-muted-foreground flex items-center">
               <TrendingUp className="h-3 w-3 mr-1" />
-              {stat.change} from last month
+              {t("page.dashboard.part.1.card." + (index + 1) + ".description")}
             </p>
           </CardContent>
         </Card>

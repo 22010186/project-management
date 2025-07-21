@@ -1,0 +1,359 @@
+{
+  "search": "Rechercher",
+  "nav": {
+    "signin": "Se connecter",
+    "get_started": "Commencer",
+    "dropdown": {
+      "title": "Connecté avec",
+      "setting": "Paramètres",
+      "logout": "Déconnexion"
+    }
+  },
+  "landing": {
+    "1": {
+      "badge": "Maintenant avec des analyses avancées",
+      "title": {
+        "1": "Gérez vos",
+        "2": "Équipes & Projets",
+        "3": "Comme jamais auparavant"
+      },
+      "description": "ProjectM est un outil de gestion d'équipe conçu pour vous aider à gérer vos projets et vos équipes plus efficacement. Créez des projets, invitez des membres, attribuez des tâches et suivez les progrès, tout en un seul endroit.",
+      "button": {
+        "1": "Commencer gratuitement",
+        "2": "Voir la démo"
+      },
+      "rating": {
+        "1": "Plus de 10 000 équipes nous font confiance",
+        "2": "note"
+      }
+    },
+    "2": {
+      "title": "Tout ce dont vous avez besoin pour réussir",
+      "description": "Des fonctionnalités puissantes pour rationaliser votre flux de travail et améliorer la productivité de l'équipe",
+      "card": {
+        "1": {
+          "title": "Collaboration d'équipe",
+          "description": "Créez des projets et invitez les membres pour collaborer harmonieusement."
+        },
+        "2": {
+          "title": "Gestion des tâches",
+          "description": "Attribuez des tâches, fixez des échéances et suivez les progrès avec notre système intuitif."
+        },
+        "3": {
+          "title": "Suivi des progrès",
+          "description": "Surveillez l'avancement des projets grâce à des analyses en temps réel et à des rapports détaillés."
+        },
+        "4": {
+          "title": "Communication d'équipe",
+          "description": "Des outils de communication intégrés pour garder votre équipe connectée et faire avancer les projets."
+        }
+      }
+    },
+    "3": {
+      "title": "Pourquoi choisir ProjectM ?",
+      "description": "Rejoignez les milliers d'équipes qui ont transformé leur flux de travail avec ProjectM.",
+      "card": {
+        "1": {
+          "title": "Augmentez la productivité",
+          "description": "Simplifiez les processus et éliminez les goulots d'étranglement pour accomplir davantage."
+        },
+        "2": {
+          "title": "Sécurité & Fiable",
+          "description": "Sécurité de niveau entreprise pour protéger vos projets et vos données."
+        },
+        "3": {
+          "title": "Gagnez du temps",
+          "description": "Des flux de travail automatisés et des notifications intelligentes pour que votre équipe se concentre sur l’essentiel."
+        }
+      }
+    },
+    "4": {
+      "title": "Prêt à transformer la gestion de votre équipe ?",
+      "description": "Commencez votre essai gratuit dès aujourd'hui et découvrez comment ProjectM peut aider votre équipe à accomplir plus ensemble.",
+      "button": {
+        "1": "Essai gratuit",
+        "2": "Contacter les ventes"
+      },
+      "placeholder": "Aucune carte requise • Essai gratuit de 14 jours • Annulation à tout moment"
+    },
+    "5": {
+      "card": {
+        "1": {
+          "title": "L'outil ultime de gestion d'équipe pour les entreprises modernes."
+        },
+        "2": {
+          "title": "Produit",
+          "items": {
+            "1": "Fonctionnalités",
+            "2": "Tarifs",
+            "3": "Sécurité",
+            "4": "Intégrations"
+          }
+        },
+        "3": {
+          "title": "Entreprise",
+          "items": {
+            "1": "À propos",
+            "2": "Blog",
+            "3": "Carrières",
+            "4": "Contact"
+          }
+        },
+        "4": {
+          "title": "Support",
+          "items": {
+            "1": "Centre d'aide",
+            "2": "Conditions d'utilisation",
+            "3": "Politique de confidentialité",
+            "4": "Documentation"
+          }
+        }
+      }
+    }
+  },
+  "auth": {
+    "register": {
+      "title": "Bienvenue",
+      "description": "Créez un compte ProjectM",
+      "name": "Nom",
+      "pass": "Mot de passe",
+      "confirmPass": "Confirmez le mot de passe",
+      "forgot": "Mot de passe oublié ?",
+      "button": "Inscription",
+      "drive": "Ou continuez avec",
+      "placeholder": "Vous avez déjà un compte ?",
+      "link": "Se connecter"
+    },
+    "signin": {
+      "title": "Bienvenue",
+      "description": "Connectez-vous à votre compte ProjectM",
+      "pass": "Mot de passe",
+      "forgot": "Mot de passe oublié ?",
+      "button": "Se connecter",
+      "drive": "Ou continuez avec",
+      "placeholder": "Vous n’avez pas de compte ?",
+      "link": "Inscription"
+    },
+    "confirm_email": {
+      "title": "Confirmez votre e-mail",
+      "description": "Nous avons envoyé un e-mail de confirmation à l’adresse fournie. Veuillez vérifier votre boîte de réception et cliquer sur le lien pour confirmer votre compte.",
+      "button": "Aller à la connexion"
+    }
+  },
+  "sidebar": {
+    "navigation": {
+      "title": "Navigation",
+      "dashboard": "Tableau de bord",
+      "timeline": "Chronologie",
+      "search": "Rechercher",
+      "settings": "Paramètres",
+      "users": "Utilisateurs",
+      "teams": "Équipes"
+    },
+    "projects": "Projets",
+    "priority": {
+      "title": "Filtrer : Priorité",
+      "urgent": "Urgent",
+      "high": "Élevée",
+      "medium": "Normale",
+      "low": "Faible",
+      "backlog": "En attente"
+    }
+  },
+  "page": {
+    "dashboard": {
+      "title": "Tableau de bord",
+      "part": {
+        "1": {
+          "card": {
+            "1": {
+              "title": "Tâches totales",
+              "description": "+12 % par rapport au mois précédent"
+            },
+            "2": {
+              "title": "En cours",
+              "description": "+4 % par rapport au mois précédent"
+            },
+            "3": {
+              "title": "Terminées",
+              "description": "+8 % par rapport au mois précédent"
+            },
+            "4": {
+              "title": "En retard",
+              "description": "-1 % par rapport au mois précédent"
+            }
+          }
+        },
+        "2": {
+          "card": {
+            "1": {
+              "title": "Tâches récentes"
+            },
+            "2": {
+              "title": "Activité des tâches hebdomadaire"
+            }
+          }
+        },
+        "3": {
+          "title": "Actions rapides",
+          "card": {
+            "1": {
+              "title": "Créer une nouvelle tâche",
+              "description": "Ajoutez une nouvelle tâche à votre projet"
+            },
+            "2": {
+              "title": "Créer un projet",
+              "description": "Créez un nouveau projet"
+            },
+            "3": {
+              "title": "Inviter des membres",
+              "description": "Invitez des membres à votre projet"
+            },
+            "4": {
+              "title": "Générer un rapport",
+              "description": "Générez un rapport pour votre projet"
+            }
+          },
+          "dialog": {
+            "project": {
+              "title": "Créer un nouveau projet",
+              "description1": "Créez votre projet d’équipe ici. Cliquez sur enregistrer lorsque c’est terminé.",
+              "name": "Nom du projet",
+              "description2": "Description",
+              "date": {
+                "1": "Date de début",
+                "2": "Date limite"
+              },
+              "button": {
+                "1": "Annuler",
+                "2": "Créer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "setting": {
+      "title": "Paramètres",
+      "part": {
+        "1": {
+          "title": "Avatar",
+          "button": "Modifier l’avatar"
+        },
+        "2": {
+          "username": "Nom d’utilisateur"
+        }
+      },
+      "dialog": {
+        "title": "Mettre à jour l’avatar",
+        "label1": "Image",
+        "label2": "Aperçu",
+        "button": {
+          "1": "Annuler",
+          "2": "Mettre à jour"
+        }
+      }
+    },
+    "users": {
+      "title": "Utilisateurs",
+      "caption": "Liste des factures de vos utilisateurs.",
+      "table": {
+        "1": "Index",
+        "2": "Nom",
+        "3": "Avatar"
+      }
+    },
+    "project": {
+      "delete_button": "Supprimer le projet",
+      "tab": {
+        "board": "Tableau",
+        "list": "Liste",
+        "timeline": "Chronologie",
+        "table": "Tableau"
+      },
+      "status": {
+        "todo": "À faire",
+        "work_in_progress": "En cours",
+        "under_review": "En révision",
+        "completed": "Terminé"
+      },
+      "dialog": {
+        "title": "Créer une nouvelle tâche",
+        "form": {
+          "task_title": "Titre de la tâche",
+          "description": "Description",
+          "status": {
+            "title": "Statut",
+            "option": {
+              "todo": "À faire",
+              "work_in_progress": "En cours",
+              "under_review": "En révision",
+              "completed": "Terminé"
+            }
+          },
+          "priority": {
+            "title": "Priorité",
+            "option": {
+              "urgent": "Urgent",
+              "high": "Élevée",
+              "medium": "Normale",
+              "low": "Faible",
+              "backlog": "En attente"
+            }
+          },
+          "start_date": "Date de début",
+          "due_date": "Date limite",
+          "points": "Points",
+          "tags": "Tags",
+          "assigned_user_id": "ID utilisateur assigné",
+          "image": "Image",
+          "button": {
+            "1": "Annuler",
+            "2": "Créer"
+          }
+        }
+      }
+    },
+    "priority": {
+      "urgent": "Priorité : Urgent",
+      "high": "Priorité : Élevée",
+      "medium": "Priorité : Normale",
+      "low": "Priorité : Faible",
+      "backlog": "Priorité : En attente"
+    },
+    "team": {
+      "title": "Équipes",
+      "create": "Créer une équipe",
+      "invite": "Inviter",
+      "table": {
+        "1": "Index",
+        "2": "ID de l’équipe",
+        "3": "Nom de l’équipe",
+        "4": "Propriétaire du produit",
+        "5": "Chef de projet",
+        "6": "Action",
+        "button": {
+          "1": "Supprimer",
+          "2": "Quitter"
+        }
+      },
+      "dialog": {
+        "title": "Créer une nouvelle équipe",
+        "description": "Créez votre équipe et ajoutez un chef de projet.",
+        "form": {
+          "team_name": "Nom de l’équipe",
+          "project_manager": "Chef de projet",
+          "button": {
+            "1": "Annuler",
+            "2": "Créer"
+          }
+        }
+      }
+    }
+  },
+  "confirm_email": {
+    "title": "Confirmez votre e-mail",
+    "description": "Nous avons envoyé un e-mail de confirmation à l’adresse que vous avez fournie. Veuillez vérifier votre boîte de réception et cliquer sur le lien pour confirmer votre compte.",
+    "button": "Aller à la connexion"
+  }
+}

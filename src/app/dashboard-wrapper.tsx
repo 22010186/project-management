@@ -1,6 +1,9 @@
+"use client";
+
 import { AppSidebar } from "@/components/app-sidebar";
 import { NavBar } from "@/components/header/nav";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import "@/lib/i18n";
 
 export default function DashBoardWrapper({
   children,

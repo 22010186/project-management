@@ -7,9 +7,9 @@ import { TaskStats } from "@/components/dashboard/task-status";
 import { useSidebar } from "@/components/ui/sidebar";
 import { getTasksByProjects } from "@/lib/supabase/api/tasks";
 import { useStateAllTask, useStateProject } from "@/store/state";
-import { Task } from "@/store/type";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Dashboard() {
   const { setOpen } = useSidebar();
@@ -19,6 +19,7 @@ export default function Dashboard() {
 
   const { projects } = useStateProject();
   const { setTasks } = useStateAllTask();
+  const { t } = useTranslation();
 
   const {
     data: tasks,
@@ -40,7 +41,9 @@ export default function Dashboard() {
       <main className="flex-1 flex flex-col max-h-[80vh]">
         <div className="flex-1 p-6 space-y-6">
           <div className="flex items-center gap-2">
-            <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
+            <h1 className="text-3xl font-bold text-foreground">
+              {t("page.dashboard.title")}
+            </h1>
           </div>
 
           <TaskStats tasks={tasks ?? []} />

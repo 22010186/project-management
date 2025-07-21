@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, User } from "lucide-react";
 import { Task } from "@/store/type";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 const getStatusColor = (status?: string) => {
   switch (status) {
@@ -40,11 +41,12 @@ type RecentTaskProps = {
 
 export function RecentTasks({ tasks }: RecentTaskProps) {
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recent Tasks</CardTitle>
+        <CardTitle>{t("page.dashboard.part.2.card.1.title")}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4 max-h-72 overflow-y-auto no-scroll">

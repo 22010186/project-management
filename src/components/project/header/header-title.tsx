@@ -1,24 +1,13 @@
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../../ui/dialog";
-import { Label } from "../../ui/label";
-import { Input } from "../../ui/input";
+"use client";
+
 import { Button } from "../../ui/button";
 import { LogOut } from "lucide-react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { useState } from "react";
 import { useStateUser } from "@/store/state";
 import { usePathname, useRouter } from "next/navigation";
 import { deleteProject } from "@/lib/supabase/api/projects";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 type HeaderTitleProps = {
   name: string;
@@ -31,6 +20,7 @@ const HeaderTitle = ({ name, isSmallText, button }: HeaderTitleProps) => {
   const { isOwner } = useStateUser();
   const queryClient = useQueryClient();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleDeleteProject = async (projectid: number) => {
     await deleteProject(projectid);
@@ -53,7 +43,7 @@ const HeaderTitle = ({ name, isSmallText, button }: HeaderTitleProps) => {
           onClick={() => handleDeleteProject(Number(pathname.split("/")[2]))}
           className="ml-full"
         >
-          <LogOut size={20} /> Delete Project
+          <LogOut size={20} /> {t("page.project.delete_button")}
         </Button>
       )}
     </div>

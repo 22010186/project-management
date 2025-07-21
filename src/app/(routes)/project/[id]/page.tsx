@@ -9,16 +9,7 @@ import { useStateProject } from "@/store/state";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import CometChatComponent from "@/components/cometchat/chat";
 
@@ -29,7 +20,7 @@ type Props = {
 export default function Project() {
   const params = useParams<Props>();
   const { id } = params;
-  const [activeTab, setActiveTab] = useState("Board");
+  const [activeTab, setActiveTab] = useState(1);
   const { name } = useStateProject();
   const [open, setOpen] = useState(false);
 
@@ -53,8 +44,8 @@ export default function Project() {
         title={name}
       />
 
-      {activeTab == "Board" && <BoardView id={id} tasks={tasks} />}
-      {activeTab == "List" && <ListView id={id} tasks={tasks} />}
+      {activeTab == 1 && <BoardView id={id} tasks={tasks} />}
+      {activeTab == 2 && <ListView id={id} tasks={tasks} />}
 
       {/* Chat */}
       <Drawer open={open} onOpenChange={setOpen}>

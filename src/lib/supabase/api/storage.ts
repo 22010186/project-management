@@ -16,6 +16,8 @@ export const uploadAvatar = async (file: File, userid: number) => {
     .from("projectm")
     .upload(`avatar/${file.name}`, file);
 
+  console.log(data?.fullPath);
+
   if (error) throw error;
 
   await supabase
