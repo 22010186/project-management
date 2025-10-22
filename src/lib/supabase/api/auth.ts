@@ -24,10 +24,15 @@ export const getUserData = async () => {
   };
 };
 
-export const createUser = async (cognitoid: string, username: string) => {
+export const createUser = async (
+  cognitoid: string,
+  username: string,
+  email: string
+) => {
   const { error } = await createClient().from("User").insert({
     cognitoid,
     username,
+    email,
   });
 
   if (error) throw error;
