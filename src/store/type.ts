@@ -99,3 +99,32 @@ export interface ChatRoom {
   isGroup: boolean;
   avatar?: string;
 }
+
+// === Session ===
+export interface Session {
+  id: number;
+  userid: number;
+  tokenhash: string;
+  ipaddress?: string | null;
+  useragent?: string | null;
+  createdat: string; // ISO string từ timestamptz
+  lastseenat?: string | null;
+  expiresat?: string | null;
+  revoked: boolean;
+}
+
+// === IP Blacklist ===
+export interface IpBlacklist {
+  id: number;
+  ipaddress: string;
+  reason?: string | null;
+  addedbyid?: number | null;
+  active: boolean;
+}
+
+export interface UserIpLogs {
+  id: number;
+  userid: number;
+  ip_address: string;
+  login_count: number;
+}
