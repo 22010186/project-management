@@ -54,7 +54,7 @@ export const html = (ipaddress: string) => `
     <hr style="border:none;border-top:1px solid #eef3f7;margin:18px 0;"/>
 
     <p class="small">
-      Lưu ý: Nếu bạn muốn tắt thông báo này hoặc thay đổi cài đặt bảo mật, truy cập <a href="https://project-management-ten-phi.vercel.app/settings" target="_blank" rel="noopener noreferrer">cài đặt tài khoản</a>.
+      Lưu ý: Nếu bạn muốn tắt thông báo này hoặc thay đổi cài đặt bảo mật, truy cập <a href="https://project-management-ten-phi.vercel.app/settings?ip=${ipaddress}" target="_blank" rel="noopener noreferrer">cài đặt tài khoản</a>.
     </p>
   </div>
 
