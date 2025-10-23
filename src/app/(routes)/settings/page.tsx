@@ -26,16 +26,20 @@ import { uploadAvatar } from "@/lib/supabase/api/storage";
 import { useStateUser } from "@/store/state";
 import { useQueryClient } from "@tanstack/react-query";
 import { Eye, EyeOff } from "lucide-react";
-import { ChangeEvent, useState } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 export default function SettingPage() {
   const [show, setShow] = useState(false);
+  const [currentIp, setCurrentIp] = useState("");
   const { dataUser } = useStateUser();
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const bucketPath = process.env.NEXT_PUBLIC_SUPABASE_BUCKET_URL;
+  const searchParams = useSearchParams();
+  const newIp = searchParams.get("ip");
 
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -67,6 +71,28 @@ export default function SettingPage() {
     await uploadAvatar(image, dataUser.userid);
     queryClient.invalidateQueries({ queryKey: ["user-data"] });
   };
+
+  const handleShow = () => {
+    console.log("Current IP:", currentIp);
+    console.log("New IP:", newIp);
+    if (!newIp || newIp == currentIp) return;
+    setShow(!show);
+  };
+
+  useEffect(() => {
+    const fetchIp = async () => {
+      try {
+        const r = await fetch("https://api.ipify.org?format=json");
+        const data = await r.json();
+        setCurrentIp(data.ip);
+        console.log("Current IP Address:", currentIp);
+      } catch (error) {
+        console.error("Error fetching IP:", error);
+      }
+    };
+
+    fetchIp();
+  }, []);
 
   return (
     <div className="p-8">
@@ -164,7 +190,7 @@ export default function SettingPage() {
           <Input defaultValue={dataUser?.email} readOnly />
         </div>
         <div className="flex flex-wrap gap-4">
-          <Button onClick={() => setShow(!show)}>Đổi mật khẩu</Button>
+          <Button onClick={() => handleShow()}>Đổi mật khẩu</Button>
           {show && <ChangePassword />}
         </div>
       </div>
