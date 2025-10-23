@@ -12,6 +12,8 @@ import { login } from "@/lib/supabase/api/actions";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { resetOrInsertIpLog } from "@/lib/supabase/api/user_ip_logs";
 
 interface Inputs {
   email: string;
@@ -28,24 +30,44 @@ export function LoginForm({
   const { register, handleSubmit } = useForm<Inputs>();
   const queryClient = useQueryClient();
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
-    const { user, error } = await login(data);
-    if (error) {
-      toast("Error", {
-        description: error,
+    setLoading(true);
+    try {
+      const r = await fetch("https://api.ipify.org?format=json");
+      const j = await r.json();
+      if (!j.ip) {
+        toast("Error", {
+          description: "Unable to get IP address",
+        });
+        return;
+      }
+
+      console.log("IP Address:", j.ip);
+
+      const { user, error } = await login(data, j.ip);
+      if (!user || error) {
+        toast("Error", {
+          description: error || "Login failed",
+        });
+        return;
+      }
+      setDataUser(user);
+
+      await resetOrInsertIpLog(user.id, j.ip);
+
+      toast("Success", {
+        description: "Login successful",
       });
-      return;
+
+      queryClient.invalidateQueries({ queryKey: ["user-data"] });
+      queryClient.invalidateQueries({ queryKey: ["allProjects"] });
+      router.push("/dashboard");
+    } catch (error) {
+    } finally {
+      setLoading(false);
     }
-    setDataUser(user);
-
-    toast("Success", {
-      description: "Login successful",
-    });
-
-    queryClient.invalidateQueries({ queryKey: ["user-data"] });
-    queryClient.invalidateQueries({ queryKey: ["allProjects"] });
-    router.push("/dashboard");
   };
 
   return (
@@ -88,6 +110,29 @@ export function LoginForm({
                 />
               </div>
               <Button type="submit" className="w-full">
+                {loading && (
+                  <svg
+                    className="mr-2 h-4 w-4 animate-spin"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      fill="none"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    />
+                  </svg>
+                )}
                 Login
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">

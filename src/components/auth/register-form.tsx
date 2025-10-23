@@ -42,8 +42,8 @@ export function RegisterForm({
     }
 
     const { user } = await signup(data);
-    if (user) {
-      await createUser(user.id, data.name);
+    if (user && user.email) {
+      await createUser(user.id, data.name, user.email);
     }
 
     setDataUser(user);
